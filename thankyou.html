@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terima Kasih - TFS 2026</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red-deep: #8B0000;
+            --red-bright: #CC2222;
+            --red-fire: #FF3333;
+            --gold-pure: #FFD700;
+            --gold-warm: #F0A500;
+            --gold-dark: #B8860B;
+            --orange-fire: #FF6B00;
+            --orange-warm: #FF8C00;
+            --bg-darkest: #070308;
+            --bg-dark: #110508;
+            --bg-mid: #1E0808;
+            --cyan-bright: #00E5FF;
+            --cyan-glow: #00BFFF;
+            --white: #FFFFFF;
+            --text-dim: #CCAA88;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-darkest);
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-darkest); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--red-fire), var(--gold-pure)); border-radius: 3px; }
+
+        /* ── NOISE TEXTURE OVERLAY ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* ── HERO SECTION BACKGROUND ── */
+        .hero-bg {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(139,0,0,0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 20% 70%, rgba(240,165,0,0.15) 0%, transparent 60%),
+                linear-gradient(180deg, var(--bg-darkest) 0%, var(--bg-dark) 50%, var(--bg-darkest) 100%);
+            z-index: -2;
+        }
+
+        .pixel-grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .hero-particles span {
+            position: absolute;
+            display: block;
+            width: 4px; height: 4px;
+            background: var(--gold-pure);
+            animation: floatPixel linear infinite;
+            opacity: 0.6;
+        }
+        @keyframes floatPixel {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 60px 40px;
+            max-width: 800px;
+            background: linear-gradient(145deg, rgba(30,8,8,0.9), rgba(18,5,5,0.95));
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            margin: 20px;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--red-fire), var(--gold-pure), var(--cyan-bright));
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        /* ── HEADLINE ── */
+        .hero-title {
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.9s ease 0.2s both;
+        }
+        .hero-title .line1 {
+            display: block;
+            font-size: clamp(24px, 4vw, 48px);
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold-pure) 60%, var(--orange-fire) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 0 20px rgba(255,215,0,0.3));
+        }
+
+        /* ── SUB-HEADLINE & MESSAGES ── */
+        .sub-headline {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--cyan-bright);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.9s ease 0.4s both;
+        }
+        
+        .message {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.9s ease 0.6s both;
+        }
+
+        /* ── BUTTON ── */
+        .btn-back {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--red-deep), var(--red-fire));
+            color: var(--gold-pure);
+            border: 2px solid var(--gold-warm);
+            border-radius: 3px;
+            cursor: pointer;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.9s ease 0.8s both;
+        }
+
+        .btn-back::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold-warm), var(--orange-fire));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn-back:hover::before { opacity: 1; }
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,51,51,0.4);
+        }
+        
+        .btn-back span { position: relative; z-index: 1; }
+
+        /* ── ICON ── */
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: bounceIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            filter: drop-shadow(0 0 20px rgba(50,205,50,0.5));
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes bounceIn {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero-bg"></div>
+    <div class="pixel-grid-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <h1 class="hero-title">
+            <span class="line1">THANKYOU</span>
+        </h1>
+        <div class="sub-headline">
+            SUBMISSION BERHASIL TERKIRIM
+        </div>
+        <p class="message">
+            Terima kasih telah berpartisipasi dan mendaftar pada acara Technofair and Seminar (TFS) 2026. Data tim beserta karya Anda telah berhasil kami terima dan masuk ke dalam database kami.
+            <br><br>
+            Silakan tunggu informasi lebih lanjut yang akan kami sampaikan melalui email atau grup komunikasi peserta.
+        </p>
+        <a href="index.html" class="btn-back"><span>KEMBALI KE BERANDA</span></a>
+    </div>
+
+    <script>
+        // Particles setup
+        (function() {
+            const container = document.getElementById('particles');
+            const colors = ['#FFD700','#FF6B00','#FF3333','#00E5FF'];
+            for (let i = 0; i < 25; i++) {
+                const el = document.createElement('span');
+                el.style.left = Math.random() * 100 + '%';
+                el.style.width = el.style.height = (Math.random() * 4 + 2) + 'px';
+                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                el.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                el.style.animationDelay = -(Math.random() * 20) + 's';
+                el.style.borderRadius = Math.random() > 0.5 ? '0' : '50%';
+                el.style.opacity = Math.random() * 0.5 + 0.2;
+                container.appendChild(el);
+            }
+        })();
+    </script>
+</body>
+</html>

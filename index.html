@@ -1,0 +1,2227 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technofair and Seminar 2026 - TFS</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --red-deep: #8B0000;
+      --red-bright: #CC2222;
+      --red-fire: #FF3333;
+      --gold-pure: #FFD700;
+      --gold-warm: #F0A500;
+      --gold-dark: #B8860B;
+      --orange-fire: #FF6B00;
+      --orange-warm: #FF8C00;
+      --bg-darkest: #070308;
+      --bg-dark: #110508;
+      --bg-mid: #1E0808;
+      --cyan-bright: #00E5FF;
+      --cyan-glow: #00BFFF;
+      --white: #FFFFFF;
+      --text-dim: #CCAA88;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-darkest);
+      color: var(--white);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-darkest);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--red-fire), var(--gold-pure));
+      border-radius: 3px;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(7, 3, 8, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s;
+    }
+
+    nav.scrolled {
+      border-bottom-color: rgba(255, 51, 51, 0.4);
+      box-shadow: 0 4px 30px rgba(255, 51, 51, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 13px;
+      background: linear-gradient(135deg, var(--gold-pure), var(--red-fire));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dim);
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(var(--gold-pure), var(--orange-fire));
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-pure);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--red-deep), var(--red-bright));
+      border: 1px solid var(--gold-warm);
+      color: var(--gold-pure) !important;
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-family: 'Press Start 2P', monospace !important;
+      font-size: 9px !important;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      background: linear-gradient(135deg, var(--red-bright), var(--orange-fire)) !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    /* ── PIXEL GRID BACKGROUND ── */
+    .pixel-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(139, 0, 0, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 20% 70%, rgba(240, 165, 0, 0.15) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-darkest) 0%, var(--bg-dark) 50%, var(--bg-darkest) 100%);
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-particles span {
+      position: absolute;
+      display: block;
+      width: 4px;
+      height: 4px;
+      background: var(--gold-pure);
+      animation: floatPixel linear infinite;
+      opacity: 0.6;
+    }
+
+    @keyframes floatPixel {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      90% {
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      padding-top: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .hero-content {
+      order: 1;
+    }
+
+    .hero-visual {
+      order: 2;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      padding: 8px 16px;
+      border-radius: 2px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--gold-warm);
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+      animation: fadeInDown 0.8s ease both;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--red-fire);
+      border-radius: 50%;
+      animation: pulseDot 1.5s infinite;
+      box-shadow: 0 0 8px var(--red-fire);
+    }
+
+    @keyframes pulseDot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+      }
+    }
+
+    .hero-title {
+      font-family: 'Press Start 2P', monospace;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.9s ease 0.2s both;
+    }
+
+    .hero-title .line1 {
+      display: block;
+      font-size: clamp(24px, 3.5vw, 42px);
+      background: linear-gradient(135deg, var(--white) 0%, var(--gold-pure) 60%, var(--orange-fire) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+      margin-bottom: 6px;
+    }
+
+    .hero-title .line2 {
+      display: block;
+      font-size: clamp(22px, 3vw, 36px);
+      background: linear-gradient(135deg, var(--red-fire) 0%, var(--gold-warm) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-event-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(11px, 1.5vw, 16px);
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--cyan-bright);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.9s ease 0.35s both;
+    }
+
+    .hero-desc {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 36px;
+      max-width: 500px;
+      line-height: 1.7;
+      animation: fadeInUp 0.9s ease 0.45s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.9s ease 0.55s both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red-deep), var(--red-fire));
+      border: 2px solid var(--gold-warm);
+      color: var(--gold-pure);
+      padding: 14px 28px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-warm), var(--orange-fire));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
+    }
+
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--gold-warm);
+      color: var(--gold-warm);
+      padding: 14px 28px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 9px;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 3px;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(240, 165, 0, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(240, 165, 0, 0.2);
+    }
+
+    /* Mascot */
+    .mascot-wrapper {
+      position: relative;
+      display: inline-block;
+      animation: fadeInRight 1s ease 0.3s both;
+    }
+
+    .mascot-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 107, 0, 0.25) 0%, transparent 70%);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+    }
+
+    .mascot-img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      border-radius: 16px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 0 30px rgba(255, 107, 0, 0.4));
+      animation: floatMascot 4s ease-in-out infinite;
+    }
+
+    @keyframes floatMascot {
+
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .pixel-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold-pure);
+      border-style: solid;
+      z-index: 3;
+    }
+
+    .pc-tl {
+      top: -5px;
+      left: -5px;
+      border-width: 3px 0 0 3px;
+    }
+
+    .pc-tr {
+      top: -5px;
+      right: -5px;
+      border-width: 3px 3px 0 0;
+    }
+
+    .pc-bl {
+      bottom: -5px;
+      left: -5px;
+      border-width: 0 0 3px 3px;
+    }
+
+    .pc-br {
+      bottom: -5px;
+      right: -5px;
+      border-width: 0 3px 3px 0;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 2;
+      animation: fadeIn 1s ease 1.2s both;
+    }
+
+    .scroll-text {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: rgba(255, 215, 0, 0.5);
+      letter-spacing: 2px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .scroll-arrow {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .scroll-arrow span {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-right: 2px solid var(--gold-warm);
+      border-bottom: 2px solid var(--gold-warm);
+      transform: rotate(45deg);
+      animation: scrollBounce 1.5s ease-in-out infinite;
+    }
+
+    .scroll-arrow span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .scroll-arrow span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes scrollBounce {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--cyan-bright);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 6px 14px;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      background: rgba(0, 229, 255, 0.05);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(18px, 2.5vw, 28px);
+      line-height: 1.5;
+      background: linear-gradient(135deg, var(--white), var(--gold-pure));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(var(--red-fire), var(--gold-pure));
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ── SECTION 2: TENTANG TFS ── */
+    #tentang {
+      padding: 100px 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 50%, rgba(139, 0, 0, 0.2) 0%, transparent 70%),
+        var(--bg-dark);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .tentang-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .tentang-visual {
+      position: relative;
+    }
+
+    .tentang-img-frame {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .chibi-img {
+      width: 100%;
+      max-width: 340px;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.3));
+      animation: floatMascot 5s ease-in-out infinite;
+    }
+
+    .frame-border {
+      position: absolute;
+      inset: -12px;
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    .frame-border::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid rgba(255, 51, 51, 0.2);
+      border-radius: 4px;
+    }
+
+    .tentang-text .section-header {
+      text-align: left;
+    }
+
+    .tentang-text .section-divider {
+      margin-left: 0;
+    }
+
+    .tentang-body {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .tentang-stats {
+      display: flex;
+      gap: 30px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 22px;
+      background: linear-gradient(135deg, var(--gold-pure), var(--orange-fire));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION 3: REGISTRATION CARDS ── */
+    #daftar {
+      padding: 100px 0;
+      background: var(--bg-darkest);
+    }
+
+    .reg-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .reg-card {
+      background: linear-gradient(145deg, rgba(30, 8, 8, 0.9), rgba(18, 5, 5, 0.95));
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 8px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .reg-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .reg-card.lkti::before {
+      background: linear-gradient(90deg, var(--red-fire), var(--gold-pure));
+    }
+
+    .reg-card.webinar::before {
+      background: linear-gradient(90deg, var(--cyan-bright), var(--gold-warm));
+    }
+
+    .reg-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.2);
+      border-color: rgba(255, 215, 0, 0.4);
+    }
+
+    .reg-card-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    .reg-card-type {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--cyan-bright);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .reg-card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-pure);
+      margin-bottom: 14px;
+    }
+
+    .reg-info-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .reg-info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .reg-info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .reg-info-list .lbl {
+      color: var(--gold-warm);
+      font-weight: 600;
+      min-width: 110px;
+      font-size: 14px;
+    }
+
+    .reg-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      letter-spacing: 1px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+    }
+
+    .reg-btn.lkti {
+      background: linear-gradient(135deg, var(--red-deep), var(--red-bright));
+      color: var(--gold-pure);
+      border: 1px solid var(--gold-warm);
+    }
+
+    .reg-btn.lkti:hover {
+      background: linear-gradient(135deg, var(--red-bright), var(--orange-fire));
+    }
+
+    .reg-btn.webinar {
+      background: linear-gradient(135deg, rgba(0, 100, 150, 0.8), rgba(0, 150, 200, 0.8));
+      color: var(--cyan-bright);
+      border: 1px solid rgba(0, 229, 255, 0.4);
+    }
+
+    .reg-btn.webinar:hover {
+      background: linear-gradient(135deg, rgba(0, 150, 200, 0.9), rgba(0, 200, 230, 0.9));
+    }
+
+    /* ── SECTION 4: SUB-TEMA FLIP CARDS ── */
+    #subtema {
+      padding: 100px 0;
+      background:
+        radial-gradient(ellipse 100% 60% at 50% 50%, rgba(139, 0, 0, 0.12) 0%, transparent 70%),
+        var(--bg-dark);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .subtema-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      height: 290px;
+      cursor: pointer;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .flip-front {
+      background: linear-gradient(145deg, rgba(30, 8, 8, 0.95), rgba(18, 5, 5, 0.98));
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: border-color 0.3s;
+    }
+
+    .flip-card:hover .flip-front {
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+
+    .flip-back {
+      background: linear-gradient(145deg, var(--red-deep), #5C0A0A);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      transform: rotateY(180deg);
+    }
+
+    .flip-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 26px;
+      background: linear-gradient(var(--gold-pure), var(--orange-fire));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .flip-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .flip-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-pure);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .flip-hint {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: rgba(255, 215, 0, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .flip-desc {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .flip-back-title {
+      display: none;
+    }
+
+    /* ── SECTION 5: JUDGES & SPEAKERS ── */
+    #juri {
+      padding: 100px 0;
+      background: var(--bg-darkest);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .judges-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .judge-card {
+      background: linear-gradient(160deg, rgba(25, 8, 8, 0.95), rgba(12, 4, 4, 0.98));
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 10px;
+      padding: 32px 20px 28px;
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .judge-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-warm), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .judge-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.2);
+      border-color: rgba(255, 215, 0, 0.35);
+    }
+
+    .judge-card:hover::after {
+      opacity: 1;
+    }
+
+    .judge-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      background: linear-gradient(135deg, rgba(139, 0, 0, 0.6), rgba(50, 20, 0, 0.8));
+      border: 3px solid rgba(255, 215, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .judge-avatar::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-pure), var(--red-fire));
+      z-index: -1;
+    }
+
+    .judge-role-badge {
+      display: inline-block;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      padding: 4px 10px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .badge-judge {
+      background: rgba(139, 0, 0, 0.5);
+      color: var(--gold-warm);
+      border: 1px solid rgba(255, 107, 0, 0.3);
+    }
+
+    .badge-speaker {
+      background: rgba(0, 80, 120, 0.5);
+      color: var(--cyan-bright);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+
+    .badge-motivator {
+      background: rgba(50, 100, 0, 0.5);
+      color: #7FFF00;
+      border: 1px solid rgba(127, 255, 0, 0.3);
+    }
+
+    .judge-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .judge-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+
+    .judge-tags {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .judge-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 2px;
+      color: var(--text-dim);
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    /* ── SECTION 6: FAQ ── */
+    #faq {
+      padding: 100px 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(139, 0, 0, 0.15) 0%, transparent 70%),
+        var(--bg-dark);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: rgba(18, 5, 5, 0.8);
+      border: 1px solid rgba(255, 215, 0, 0.12);
+      border-radius: 6px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .faq-item.open {
+      border-color: rgba(255, 107, 0, 0.4);
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      cursor: pointer;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .faq-q-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      flex: 1;
+    }
+
+    .faq-item.open .faq-q-text {
+      color: var(--gold-warm);
+    }
+
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      color: var(--gold-warm);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--red-deep);
+      border-color: var(--gold-warm);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.7;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 24px 20px;
+    }
+
+    /* ── SECTION 7: CONTACT + COUNTDOWN ── */
+    #contact {
+      padding: 100px 0;
+      background: var(--bg-darkest);
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .contact-countdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Countdown */
+    .countdown-box {
+      background: linear-gradient(145deg, rgba(30, 8, 8, 0.9), rgba(10, 3, 3, 0.95));
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      border-radius: 10px;
+      padding: 40px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red-fire), var(--gold-pure), var(--orange-fire));
+    }
+
+    .countdown-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 8px;
+      color: var(--red-fire);
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .countdown-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 30px;
+      line-height: 1.4;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .countdown-unit {
+      background: rgba(139, 0, 0, 0.3);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 6px;
+      padding: 16px 8px;
+    }
+
+    .countdown-num {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 28px;
+      color: var(--gold-pure);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+    }
+
+    .countdown-unit-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .deadline-note {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 16px;
+    }
+
+    /* CP Cards */
+    .cp-section h3 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 12px;
+      color: var(--gold-warm);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+      line-height: 1.5;
+    }
+
+    .cp-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cp-card {
+      background: linear-gradient(145deg, rgba(25, 8, 8, 0.9), rgba(12, 4, 4, 0.95));
+      border: 1px solid rgba(255, 215, 0, 0.15);
+      border-radius: 8px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s;
+    }
+
+    .cp-card:hover {
+      border-color: rgba(37, 211, 102, 0.5);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.1);
+      transform: translateX(4px);
+    }
+
+    .cp-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red-deep), var(--gold-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      border: 2px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .cp-info {
+      flex: 1;
+    }
+
+    .cp-role {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      color: var(--cyan-bright);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .cp-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .cp-number {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .cp-wa-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: #25D366;
+      padding: 8px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 6px;
+      transition: all 0.3s;
+      flex-shrink: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .cp-wa-btn:hover {
+      background: rgba(37, 211, 102, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #040203;
+      border-top: 1px solid rgba(255, 215, 0, 0.15);
+      padding: 40px 0 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 16px;
+      background: linear-gradient(135deg, var(--gold-pure), var(--red-fire));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 215, 0, 0.4);
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-warm);
+    }
+
+    .footer-copy {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 1px;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: 0.4s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        padding: 100px 24px 60px;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .hero-content {
+        order: 2;
+        text-align: center;
+      }
+
+      .hero-desc {
+        margin: 0 auto 30px;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .tentang-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tentang-visual {
+        display: none;
+      }
+
+      .reg-cards {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+      }
+
+      .subtema-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .judges-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-countdown-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .countdown-num {
+        font-size: 20px;
+      }
+
+      .section-title {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .subtema-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .judges-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tentang-stats {
+        gap: 16px;
+      }
+
+      .stat-num {
+        font-size: 18px;
+      }
+    }
+
+    /* ── VIDEO INTRO ── */
+    #intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--bg-darkest);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #intro-overlay video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    body.intro-active {
+      overflow: hidden;
+    }
+
+    .skip-text {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+      animation: pulseSkip 1.5s infinite;
+      z-index: 10000;
+      pointer-events: none;
+      /* Let clicks pass through to the overlay */
+    }
+
+    @keyframes pulseSkip {
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+        color: var(--gold-pure);
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      }
+    }
+  </style>
+</head>
+
+<body class="intro-active">
+
+  <!-- ── VIDEO INTRO ── -->
+  <div id="intro-overlay">
+    <video id="intro-video" autoplay muted playsinline>
+      <source src="intro 2.mp4" type="video/mp4">
+      Browser Anda tidak mendukung elemen video.
+    </video>
+    <div class="skip-text">KLIK UNTUK MELEWATI</div>
+  </div>
+
+  <!-- ── NAVIGATION ── -->
+  <nav id="navbar">
+    <div class="nav-logo">TFS 2026</div>
+    <ul class="nav-links">
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#daftar">Daftar</a></li>
+      <li><a href="#subtema">Sub-Tema</a></li>
+      <li><a href="#juri">Juri</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Kontak</a></li>
+      <li><a href="#daftar" class="nav-cta"><span>DAFTAR</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="pixel-grid-bg"></div>
+    <div class="hero-particles" id="particles"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          TECHNOFAIR AND SEMINAR 2026
+        </div>
+        <p class="hero-event-name">TFS &bull; DIGITAL SOVEREIGNTY</p>
+        <h1 class="hero-title">
+          <span class="line1">MUDA BERDAYA,</span>
+          <span class="line2">DIGITAL BERDAULAT</span>
+        </h1>
+        <p class="hero-desc">
+          Empowering Indonesia's Digital Sovereignty: A Youth-Led Sustainable Innovation Framework to Cultivate
+          High-Caliber Digital Talents 2045.
+        </p>
+        <div class="hero-buttons">
+          <a href="#daftar" class="btn-primary"><span>&#9658; DAFTAR LKTI</span></a>
+          <a href="#daftar" class="btn-secondary">&#9654; WEBINAR</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="mascot-wrapper">
+          <div class="mascot-glow"></div>
+          <div class="pixel-corner pc-tl"></div>
+          <div class="pixel-corner pc-tr"></div>
+          <div class="pixel-corner pc-bl"></div>
+          <div class="pixel-corner pc-br"></div>
+          <img src="maskot 2.png" alt="TFS 2026 Mascot" class="mascot-img" />
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span class="scroll-text">SCROLL DOWN</span>
+      <div class="scroll-arrow">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TENTANG TFS ── -->
+  <section id="tentang">
+    <div class="container">
+      <div class="tentang-grid">
+        <div class="tentang-visual reveal">
+          <div class="tentang-img-frame">
+            <img src="maskot 2.png" alt="TFS Mascot" class="chibi-img" />
+            <div class="frame-border"></div>
+          </div>
+        </div>
+        <div class="tentang-text reveal reveal-delay-2">
+          <div class="section-header">
+            <span class="section-tag">Tentang Kami</span>
+            <h2 class="section-title">Tentang TFS</h2>
+            <div class="section-divider"></div>
+          </div>
+          <p class="tentang-body">
+            Techno Fair and Seminar (TFS) adalah salah satu program kerja unggulan dari UKM Pendidikan dan Penalaran Politeknik Negeri Malang. Sebagai wadah inovasi dan penulisan ilmiah, TFS konsisten menghadirkan ruang akselerasi bagi generasi muda melalui dua agenda utama setiap tahunnya, yaitu Lomba Karya Tulis Ilmiah Nasional (LKTIN) dan Webinar Nasional dengan fokus tema yang selalu adaptif terhadap tantangan zaman.
+          </p>
+          <p class="tentang-body">
+            Melalui integrasi dua event utama, TFS 2026 berkomitmen menjadi pemantik optimisme agar pemuda Indonesia tidak lagi sekadar menjadi penonton, melainkan arsitek utama yang mandiri dan berdaulat di atas tanah digitalnya sendiri.
+          </p>
+          <div class="tentang-stats">
+            <div class="stat-item">
+              <span class="stat-num">500+</span>
+              <span class="stat-label">Peserta</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">8</span>
+              <span class="stat-label">Sub-Tema</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">4</span>
+              <span class="stat-label">Narasumber</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">2026</span>
+              <span class="stat-label">Tahun</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REGISTRATION CARDS ── -->
+  <section id="daftar">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Pendaftaran</span>
+        <h2 class="section-title">Ikuti Event Kami</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="reg-cards">
+        <div class="reg-card lkti reveal reveal-delay-1">
+          <div class="reg-card-icon">&#127942;</div>
+          <div class="reg-card-type">KOMPETISI ILMIAH</div>
+          <div class="reg-card-title">Lomba LKTI TFS</div>
+          <ul class="reg-info-list">
+            <li><span class="lbl">Pendaftaran</span> 1 Juni &ndash; 31 Juli 2026</li>
+            <li><span class="lbl">Pengumpulan</span> 8 Juli 2026</li>
+            <li><span class="lbl">Peserta</span> Mahasiswa S1/D4 (Maks. 3 orang)</li>
+            <li><span class="lbl">Biaya</span> Gratis / Free of Charge</li>
+            <li><span class="lbl">Hadiah</span> Total Rp 5.000.000</li>
+            <li><span class="lbl">Output</span> Karya Tulis Ilmiah</li>
+          </ul>
+          <a href="LKTI.html" class="reg-btn lkti">&#9658; INFO SELENGKAPNYA</a>
+        </div>
+        <div class="reg-card webinar reveal reveal-delay-2">
+          <div class="reg-card-icon">&#127760;</div>
+          <div class="reg-card-type">WEBINAR NASIONAL</div>
+          <div class="reg-card-title">Webinar TFS</div>
+          <ul class="reg-info-list">
+            <li><span class="lbl">Tanggal</span> Agustus 2026 (TBA)</li>
+            <li><span class="lbl">Platform</span> Zoom Meeting</li>
+            <li><span class="lbl">Peserta</span> Terbuka untuk Umum</li>
+            <li><span class="lbl">Biaya</span> Gratis / Free of Charge</li>
+            <li><span class="lbl">Sertifikat</span> E-Certificate Nasional</li>
+            <li><span class="lbl">Kapasitas</span> 500 Peserta</li>
+          </ul>
+          <a href="#" class="reg-btn webinar">&#9654; DAFTAR WEBINAR SEKARANG</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUB-TEMA LKTI ── -->
+  <section id="subtema">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">LKTI 2026</span>
+        <h2 class="section-title">Sub-Tema Lomba LKTI</h2>
+        <div class="section-divider"></div>
+        <p
+          style="margin-top:14px;font-family:'Rajdhani',sans-serif;color:rgba(255,255,255,0.5);font-size:14px;font-family:'Press Start 2P',monospace;font-size:8px;letter-spacing:1px;">
+          &#9654; KLIK KARTU UNTUK MELIHAT DESKRIPSI</p>
+      </div>
+      <div class="subtema-grid">
+
+        <div class="flip-card reveal reveal-delay-1" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">01</div>
+              <div class="flip-icon">&#127959;</div>
+              <div class="flip-title">Infrastructure</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Infrastructure</div>
+              <div class="flip-desc">Pengembangan fondasi fisik maupun virtual ruang digital yang mandiri, merata, aman, dan sepenuhnya dikelola di dalam negeri demi melindungi kedaulatan data nasional.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-1" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">02</div>
+              <div class="flip-icon">&#127806;</div>
+              <div class="flip-title">Agrotech</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Agrotech</div>
+              <div class="flip-desc">Penerapan teknologi modern di sektor pertanian, peternakan, atau perikanan guna mengoptimalkan hasil produksi lokal dan mewujudkan kedaulatan pangan nasional.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-2" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">03</div>
+              <div class="flip-icon">&#129302;</div>
+              <div class="flip-title">AI of Things</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Artificial Intelligence of Things (AIoT)</div>
+              <div class="flip-desc">Integrasi kecerdasan buatan dengan perangkat keras pintar terkoneksi internet untuk menciptakan ekosistem yang responsif, otomatis, dan berbasis data analitik.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-2" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">04</div>
+              <div class="flip-icon">&#127979;</div>
+              <div class="flip-title">Education Technology</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Education Technology (EduTech)</div>
+              <div class="flip-desc">Transformasi media dan metode pembelajaran berbasis digital yang inklusif untuk mempercepat pemerataan kualitas pendidikan serta melahirkan talenta digital berkaliber tinggi.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-3" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">05</div>
+              <div class="flip-icon">&#127963;</div>
+              <div class="flip-title">Government Technology</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Government Technology (GovTech)</div>
+              <div class="flip-desc">Modernisasi dan digitalisasi layanan publik birokrasi pemerintahan guna menciptakan tata kelola yang transparan, efisien, terintegrasi, dan responsif terhadap kebutuhan masyarakat.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-3" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">06</div>
+              <div class="flip-icon">&#128737;</div>
+              <div class="flip-title">Resilience Technology</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Resilience Technology</div>
+              <div class="flip-desc">Pengembangan teknologi ketahanan nasional, baik dalam aspek pertahanan siber maupun sistem mitigasi, adaptasi, dan penanggulangan bencana alam secara mandiri.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-4" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">07</div>
+              <div class="flip-icon">&#129657;</div>
+              <div class="flip-title">Health Technology</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Health Technology</div>
+              <div class="flip-desc">Inovasi digital di bidang kesehatan untuk memperluas jangkauan fasilitas medis, akurasi diagnosis, dan efisiensi manajemen pelayanan kesehatan masyarakat.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card reveal reveal-delay-4" onclick="this.classList.toggle('flipped')">
+          <div class="flip-inner">
+            <div class="flip-front">
+              <div class="flip-num">08</div>
+              <div class="flip-icon">&#9881;</div>
+              <div class="flip-title">Industry Blueprint</div>
+              <div class="flip-hint">&#9654; KLIK UNTUK INFO</div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-title">Industry Blueprint</div>
+              <div class="flip-desc">Inovasi teknologi untuk digitalisasi, otomatisasi, dan peningkatan efisiensi sistem manufaktur lokal guna mengurangi ketergantungan pada rantai pasok industri asing.</div>
+              <a href="LKTI.html" class="reg-btn lkti" style="margin-top: 10px; padding: 6px 12px; font-size: 6px; width: 90%;">&#9658; INFO SELENGKAPNYA</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JUDGES & SPEAKERS ── -->
+  <section id="juri">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Narasumber</span>
+        <h2 class="section-title">Meet Our Judges and Speaker</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="judges-grid">
+
+        <div class="judge-card reveal reveal-delay-1">
+          <div class="judge-avatar">&#128104;&#8205;&#128187;</div>
+          <span class="judge-role-badge badge-judge">JURI LKTI</span>
+          <div class="judge-name">Dr. Ahmad Fauzi, M.Kom.</div>
+          <div class="judge-title">Dosen Senior Teknologi Informasi<br>Universitas XYZ</div>
+          <div class="judge-tags">
+            <span class="judge-tag">AI Research</span>
+            <span class="judge-tag">Data Science</span>
+          </div>
+        </div>
+
+        <div class="judge-card reveal reveal-delay-2">
+          <div class="judge-avatar">&#128105;&#8205;&#128300;</div>
+          <span class="judge-role-badge badge-judge">JURI LKTI</span>
+          <div class="judge-name">Prof. Sari Dewi, Ph.D.</div>
+          <div class="judge-title">Kepala Pusat Riset Inovasi Digital<br>BRIN Indonesia</div>
+          <div class="judge-tags">
+            <span class="judge-tag">IoT</span>
+            <span class="judge-tag">Smart Systems</span>
+          </div>
+        </div>
+
+        <div class="judge-card reveal reveal-delay-3">
+          <div class="judge-avatar">&#127908;</div>
+          <span class="judge-role-badge badge-speaker">NARASUMBER</span>
+          <div class="judge-name">Ir. Budi Santoso, M.T.</div>
+          <div class="judge-title">CTO &amp; Co-Founder<br>Startup Teknologi Nasional</div>
+          <div class="judge-tags">
+            <span class="judge-tag">Tech Startup</span>
+            <span class="judge-tag">Digital Biz</span>
+          </div>
+        </div>
+
+        <div class="judge-card reveal reveal-delay-4">
+          <div class="judge-avatar">&#127775;</div>
+          <span class="judge-role-badge badge-motivator">MOTIVATOR</span>
+          <div class="judge-name">Rizky Pratama, S.Psi.</div>
+          <div class="judge-title">Youth Leadership Coach<br>&amp; Digital Motivator</div>
+          <div class="judge-tags">
+            <span class="judge-tag">Leadership</span>
+            <span class="judge-tag">Youth Dev</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Bantuan</span>
+        <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Siapa saja yang bisa mengikuti Lomba LKTI TFS?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Lomba LKTI TFS terbuka untuk mahasiswa aktif jenjang S1/D4 dari seluruh perguruan
+            tinggi di Indonesia. Setiap tim terdiri dari maksimal 3 orang mahasiswa yang bisa berasal dari jurusan yang
+            berbeda, namun masih dalam satu perguruan tinggi yang sama.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-1">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Apakah pendaftaran LKTI dan Webinar berbayar?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Tidak! Seluruh kegiatan Technofair and Seminar 2026, baik Lomba LKTI maupun Webinar
+            Nasional, sepenuhnya GRATIS. Tidak ada biaya pendaftaran yang dikenakan kepada peserta. Namun peserta wajib
+            mendaftar terlebih dahulu untuk mendapatkan akses dan informasi terbaru.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-2">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Bagaimana format karya tulis yang harus dikumpulkan?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Karya tulis ilmiah harus memenuhi format yang telah ditentukan: menggunakan template
+            resmi TFS 2026, ditulis dalam Bahasa Indonesia, minimal 15 halaman dan maksimal 30 halaman (tidak termasuk
+            daftar pustaka dan lampiran), ukuran A4, font Times New Roman 12pt, spasi 1.5. Template dapat diunduh
+            melalui link yang tersedia di halaman pendaftaran.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-2">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Apakah karya bisa dikirim dari mahasiswa luar pulau Jawa?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Tentu saja! Lomba LKTI TFS 2026 berskala nasional dan terbuka untuk mahasiswa dari
+            seluruh penjuru Indonesia. Pengumpulan karya dilakukan secara daring (online) melalui portal pendaftaran
+            resmi kami, sehingga tidak ada batasan geografis bagi peserta.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-3">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Apakah Webinar TFS memberikan sertifikat?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Ya! Seluruh peserta webinar yang telah hadir dan mengikuti sesi dari awal hingga akhir
+            akan mendapatkan e-Certificate yang diakui secara nasional. Sertifikat akan dikirimkan melalui email yang
+            didaftarkan dalam waktu maksimal 7 hari kerja setelah kegiatan berlangsung.</div>
+        </div>
+        <div class="faq-item reveal reveal-delay-3">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span class="faq-q-text">Kapan pengumuman pemenang LKTI akan dilakukan?</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Pengumuman pemenang Lomba LKTI TFS 2026 akan dilakukan bersamaan dengan acara puncak
+            Technofair and Seminar pada bulan Agustus 2026. Finalis akan diumumkan terlebih dahulu dan diundang untuk
+            mempresentasikan karya secara daring sebelum pemenang dipilih oleh dewan juri.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT + COUNTDOWN ── -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Hubungi Kami</span>
+        <h2 class="section-title">Contact &amp; Countdown</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-countdown-grid">
+
+        <div class="countdown-box reveal">
+          <div class="countdown-label">&#9200; WAKTU TERSISA</div>
+          <div class="countdown-title">Batas Pengumpulan<br>Karya LKTI TFS 2026</div>
+          <div class="countdown-grid">
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-days">00</span>
+              <span class="countdown-unit-label">Hari</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-hours">00</span>
+              <span class="countdown-unit-label">Jam</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-mins">00</span>
+              <span class="countdown-unit-label">Menit</span>
+            </div>
+            <div class="countdown-unit">
+              <span class="countdown-num" id="cd-secs">00</span>
+              <span class="countdown-unit-label">Detik</span>
+            </div>
+          </div>
+          <div class="deadline-note">&#128197; Deadline: 8 Juli 2026, 23:59 WIB</div>
+        </div>
+
+        <div class="cp-section reveal reveal-delay-2">
+          <h3>&#128222; CONTACT PERSON TFS 2026</h3>
+          <div class="cp-cards">
+            <div class="cp-card">
+              <div class="cp-avatar">&#128104;</div>
+              <div class="cp-info">
+                <div class="cp-role">CP LKTI</div>
+                <div class="cp-name">Arif Setiawan</div>
+                <div class="cp-number">+62 812-3456-7890</div>
+              </div>
+              <a href="https://wa.me/6281234567890" class="cp-wa-btn" target="_blank">
+                &#128172; WA
+              </a>
+            </div>
+            <div class="cp-card">
+              <div class="cp-avatar">&#128105;</div>
+              <div class="cp-info">
+                <div class="cp-role">CP WEBINAR</div>
+                <div class="cp-name">Dina Rahayu</div>
+                <div class="cp-number">+62 813-9876-5432</div>
+              </div>
+              <a href="https://wa.me/6281398765432" class="cp-wa-btn" target="_blank">
+                &#128172; WA
+              </a>
+            </div>
+            <div class="cp-card">
+              <div class="cp-avatar">&#128115;</div>
+              <div class="cp-info">
+                <div class="cp-role">CP UMUM / INFORMASI</div>
+                <div class="cp-name">Bimo Prasetyo</div>
+                <div class="cp-number">+62 857-1234-5678</div>
+              </div>
+              <a href="https://wa.me/6285712345678" class="cp-wa-btn" target="_blank">
+                &#128172; WA
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">TFS 2026</div>
+    <div class="footer-tagline">Technofair and Seminar &bull; Muda Berdaya, Digital Berdaulat</div>
+    <div class="footer-links">
+      <a href="#hero">Beranda</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#daftar">Pendaftaran</a>
+      <a href="#subtema">Sub-Tema</a>
+      <a href="#juri">Juri & Speaker</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Kontak</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 TECHNOFAIR AND SEMINAR &bull; ALL RIGHTS RESERVED</div>
+  </footer>
+
+  <script>
+    // Particles
+    (function () {
+      const container = document.getElementById('particles');
+      const colors = ['#FFD700', '#FF6B00', '#FF3333', '#00E5FF'];
+      for (let i = 0; i < 25; i++) {
+        const el = document.createElement('span');
+        el.style.left = Math.random() * 100 + '%';
+        el.style.width = el.style.height = (Math.random() * 4 + 2) + 'px';
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        el.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        el.style.animationDelay = -(Math.random() * 20) + 's';
+        el.style.borderRadius = Math.random() > 0.5 ? '0' : '50%';
+        el.style.opacity = Math.random() * 0.5 + 0.2;
+        container.appendChild(el);
+      }
+    })();
+
+    // Navbar scroll
+    window.addEventListener('scroll', function () {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Flip card accordion logic
+    const flipCards = document.querySelectorAll('.flip-card');
+    flipCards.forEach(card => {
+      card.removeAttribute('onclick');
+      card.addEventListener('click', function () {
+        const isFlipped = this.classList.contains('flipped');
+        flipCards.forEach(c => c.classList.remove('flipped'));
+        if (!isFlipped) this.classList.add('flipped');
+      });
+    });
+
+    // FAQ toggle
+    function toggleFAQ(btn) {
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    // Countdown — deadline 8 July 2026 23:59:00 WIB (UTC+7)
+    function updateCountdown() {
+      const deadline = new Date('2026-07-08T23:59:00+07:00').getTime();
+      const now = Date.now();
+      let diff = deadline - now;
+      if (diff < 0) diff = 0;
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      const fmt = n => String(n).padStart(2, '0');
+      document.getElementById('cd-days').textContent = fmt(days);
+      document.getElementById('cd-hours').textContent = fmt(hours);
+      document.getElementById('cd-mins').textContent = fmt(mins);
+      document.getElementById('cd-secs').textContent = fmt(secs);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    // Video Intro
+    const introVideo = document.getElementById('intro-video');
+    const introOverlay = document.getElementById('intro-overlay');
+
+    if (introVideo && introOverlay) {
+      const finishIntro = () => {
+        introOverlay.style.opacity = '0';
+        setTimeout(() => {
+          introOverlay.style.display = 'none';
+          document.body.classList.remove('intro-active');
+        }, 1000);
+      };
+
+      introVideo.addEventListener('ended', finishIntro);
+      introVideo.addEventListener('error', finishIntro);
+      introOverlay.addEventListener('click', finishIntro);
+
+      // Fallback in case video doesn't load/play
+      setTimeout(() => {
+        if (introOverlay.style.display !== 'none' && introVideo.readyState === 0) {
+          finishIntro();
+        }
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>
