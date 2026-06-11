@@ -1157,7 +1157,7 @@
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 60px;
-      align-items: start;
+      align-items: stretch;
     }
 
     /* Countdown */
@@ -1169,6 +1169,9 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .countdown-box::before {
@@ -1183,18 +1186,18 @@
 
     .countdown-label {
       font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
+      font-size: 12px;
       color: var(--red-fire);
       letter-spacing: 2px;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
     .countdown-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 16px;
+      font-size: 28px;
       font-weight: 700;
       color: var(--white);
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       line-height: 1.4;
     }
 
@@ -1766,7 +1769,7 @@
             <li><span class="lbl">Sertifikat</span> E-Certificate Nasional</li>
             <li><span class="lbl">Kapasitas</span> 500 Peserta</li>
           </ul>
-          <a href="#" class="reg-btn webinar">&#9654; DAFTAR WEBINAR SEKARANG</a>
+          <a href="webinar.html" class="reg-btn webinar">&#9654; DAFTAR WEBINAR SEKARANG</a>
         </div>
       </div>
     </div>
@@ -1944,47 +1947,27 @@
       <div class="judges-grid">
 
         <div class="judge-card reveal reveal-delay-1">
-          <div class="judge-avatar">&#128104;&#8205;&#128187;</div>
+          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-judge">JURI LKTI</span>
-          <div class="judge-name">Dr. Ahmad Fauzi, M.Kom.</div>
-          <div class="judge-title">Dosen Senior Teknologi Informasi<br>Universitas XYZ</div>
-          <div class="judge-tags">
-            <span class="judge-tag">AI Research</span>
-            <span class="judge-tag">Data Science</span>
-          </div>
+          <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-2">
-          <div class="judge-avatar">&#128105;&#8205;&#128300;</div>
+          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-judge">JURI LKTI</span>
-          <div class="judge-name">Prof. Sari Dewi, Ph.D.</div>
-          <div class="judge-title">Kepala Pusat Riset Inovasi Digital<br>BRIN Indonesia</div>
-          <div class="judge-tags">
-            <span class="judge-tag">IoT</span>
-            <span class="judge-tag">Smart Systems</span>
-          </div>
+          <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-3">
-          <div class="judge-avatar">&#127908;</div>
+          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-speaker">NARASUMBER</span>
-          <div class="judge-name">Ir. Budi Santoso, M.T.</div>
-          <div class="judge-title">CTO &amp; Co-Founder<br>Startup Teknologi Nasional</div>
-          <div class="judge-tags">
-            <span class="judge-tag">Tech Startup</span>
-            <span class="judge-tag">Digital Biz</span>
-          </div>
+          <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-4">
-          <div class="judge-avatar">&#127775;</div>
+          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-motivator">MOTIVATOR</span>
-          <div class="judge-name">Rizky Pratama, S.Psi.</div>
-          <div class="judge-title">Youth Leadership Coach<br>&amp; Digital Motivator</div>
-          <div class="judge-tags">
-            <span class="judge-tag">Leadership</span>
-            <span class="judge-tag">Youth Dev</span>
-          </div>
+          <div class="judge-name">COMING SOON</div>
         </div>
 
       </div>
@@ -2118,15 +2101,34 @@
                 &#128172; WA
               </a>
             </div>
+          </div>
+
+          <h3 style="margin-top: 36px;">&#128247; SOCIAL MEDIA</h3>
+          <div class="cp-cards">
             <div class="cp-card">
-              <div class="cp-avatar">&#128115;</div>
-              <div class="cp-info">
-                <div class="cp-role">CP UMUM / INFORMASI</div>
-                <div class="cp-name">Bimo Prasetyo</div>
-                <div class="cp-number">+62 857-1234-5678</div>
+              <div class="cp-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </div>
-              <a href="https://wa.me/6285712345678" class="cp-wa-btn" target="_blank">
-                &#128172; WA
+              <div class="cp-info">
+                <div class="cp-role">INSTAGRAM</div>
+                <div class="cp-name">TFS Polinema</div>
+                <div class="cp-number">@tfs_polinema</div>
+              </div>
+              <a href="https://www.instagram.com/tfs_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15);">
+                KUNJUNGI
+              </a>
+            </div>
+            <div class="cp-card">
+              <div class="cp-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </div>
+              <div class="cp-info">
+                <div class="cp-role">INSTAGRAM</div>
+                <div class="cp-name">UKMPP Polinema</div>
+                <div class="cp-number">@ukmpp_polinema</div>
+              </div>
+              <a href="https://www.instagram.com/ukmpp_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15);">
+                KUNJUNGI
               </a>
             </div>
           </div>
