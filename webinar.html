@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinar TFS 2026 - Coming Soon</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red-deep: #8B0000;
+            --red-bright: #CC2222;
+            --red-fire: #FF3333;
+            --gold-pure: #FFD700;
+            --gold-warm: #F0A500;
+            --gold-dark: #B8860B;
+            --orange-fire: #FF6B00;
+            --bg-darkest: #070308;
+            --bg-dark: #110508;
+            --cyan-bright: #00E5FF;
+            --white: #FFFFFF;
+            --text-dim: #CCAA88;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-darkest);
+            color: var(--white);
+            font-family: 'Rajdhani', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(139, 0, 0, 0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 20% 70%, rgba(240, 165, 0, 0.15) 0%, transparent 60%),
+                linear-gradient(180deg, var(--bg-darkest) 0%, var(--bg-dark) 50%, var(--bg-darkest) 100%);
+            z-index: -2;
+        }
+
+        .pixel-grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: rgba(7, 3, 8, 0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 14px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 13px;
+            background: linear-gradient(135deg, var(--gold-pure), var(--red-fire));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-back {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 9px;
+            border: 1px solid var(--gold-warm);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-back:hover {
+            background: rgba(240, 165, 0, 0.1);
+            color: var(--gold-pure);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+        }
+
+        .coming-soon-card {
+            background: linear-gradient(145deg, rgba(30, 8, 8, 0.9), rgba(18, 5, 5, 0.95));
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .coming-soon-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan-bright), var(--gold-pure));
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .cs-icon {
+            font-size: 64px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.4));
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .cs-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 24px;
+            background: linear-gradient(135deg, var(--white), var(--cyan-bright));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+            line-height: 1.4;
+            letter-spacing: 2px;
+        }
+
+        .cs-desc {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .cs-title { font-size: 18px; }
+            .coming-soon-card { padding: 40px 20px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pixel-grid-bg"></div>
+    
+    <nav>
+        <a href="index.html" class="nav-logo">TFS 2026</a>
+        <a href="index.html" class="nav-back">&#9664; KEMBALI</a>
+    </nav>
+
+    <div class="main-content">
+        <div class="coming-soon-card">
+            <div class="cs-icon">&#128640;</div>
+            <h1 class="cs-title">COMING SOON</h1>
+            <p class="cs-desc">Halaman Webinar masih dalam tahap pengembangan. Nantikan informasi lebih lanjut seputar Webinar Nasional TFS 2026!</p>
+        </div>
+    </div>
+</body>
+
+</html>
