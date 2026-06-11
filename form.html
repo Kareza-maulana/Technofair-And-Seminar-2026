@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Submission Lomba LKTI</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --red-deep: #8B0000;
@@ -25,7 +29,13 @@
             --text-dim: #CCAA88;
         }
 
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             background-color: var(--bg-darkest);
@@ -38,9 +48,18 @@
         }
 
         /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-darkest); }
-        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--red-fire), var(--gold-pure)); border-radius: 3px; }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-darkest);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--red-fire), var(--gold-pure));
+            border-radius: 3px;
+        }
 
         /* ── NOISE TEXTURE OVERLAY ── */
         body::before {
@@ -58,8 +77,8 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(139,0,0,0.45) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 80% at 20% 70%, rgba(240,165,0,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 60% at 60% 40%, rgba(139, 0, 0, 0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 80% at 20% 70%, rgba(240, 165, 0, 0.15) 0%, transparent 60%),
                 linear-gradient(180deg, var(--bg-darkest) 0%, var(--bg-dark) 50%, var(--bg-darkest) 100%);
             z-index: -2;
         }
@@ -68,8 +87,8 @@
             position: fixed;
             inset: 0;
             background-image:
-                linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 215, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 215, 0, 0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
@@ -82,19 +101,35 @@
             overflow: hidden;
             z-index: -1;
         }
+
         .hero-particles span {
             position: absolute;
             display: block;
-            width: 4px; height: 4px;
+            width: 4px;
+            height: 4px;
             background: var(--gold-pure);
             animation: floatPixel linear infinite;
             opacity: 0.6;
         }
+
         @keyframes floatPixel {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container-wrapper {
@@ -112,6 +147,7 @@
             line-height: 1.5;
             margin-bottom: 30px;
         }
+
         .hero-title .line1 {
             display: block;
             font-size: clamp(24px, 3.5vw, 42px);
@@ -120,29 +156,33 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: none;
-            filter: drop-shadow(0 0 20px rgba(255,215,0,0.3));
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
             margin-bottom: 6px;
         }
 
         /* ── COUNTDOWN ── */
         .countdown-box {
-            background: linear-gradient(145deg, rgba(30,8,8,0.9), rgba(10,3,3,0.95));
-            border: 1px solid rgba(255,107,0,0.3);
+            background: linear-gradient(145deg, rgba(30, 8, 8, 0.9), rgba(10, 3, 3, 0.95));
+            border: 1px solid rgba(255, 107, 0, 0.3);
             border-radius: 10px;
             padding: 30px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
             margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
         .countdown-box::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--red-fire), var(--gold-pure), var(--orange-fire));
         }
+
         .countdown-label {
             font-family: 'Press Start 2P', monospace;
             font-size: 8px;
@@ -150,6 +190,7 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
         }
+
         .countdown-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 16px;
@@ -158,6 +199,7 @@
             margin-bottom: 20px;
             line-height: 1.4;
         }
+
         .countdown-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -167,12 +209,14 @@
             margin-left: auto;
             margin-right: auto;
         }
+
         .countdown-unit {
-            background: rgba(139,0,0,0.3);
-            border: 1px solid rgba(255,215,0,0.2);
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 6px;
             padding: 16px 8px;
         }
+
         .countdown-num {
             font-family: 'Press Start 2P', monospace;
             font-size: 24px;
@@ -180,8 +224,9 @@
             display: block;
             line-height: 1;
             margin-bottom: 8px;
-            filter: drop-shadow(0 0 8px rgba(255,215,0,0.5));
+            filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
         }
+
         .countdown-unit-label {
             font-family: 'Rajdhani', sans-serif;
             font-size: 12px;
@@ -189,27 +234,30 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
+
         .deadline-note {
             font-family: 'Rajdhani', sans-serif;
             font-size: 14px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 16px;
         }
 
         /* ── FORM STYLE ── */
         .form-container {
-            background: linear-gradient(145deg, rgba(30,8,8,0.9), rgba(18,5,5,0.95));
-            border: 1px solid rgba(255,215,0,0.2);
+            background: linear-gradient(145deg, rgba(30, 8, 8, 0.9), rgba(18, 5, 5, 0.95));
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 8px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             position: relative;
         }
-        
+
         .form-container::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--red-fire), var(--gold-pure));
             border-top-left-radius: 8px;
@@ -223,10 +271,10 @@
             color: var(--gold-pure);
             margin-top: 30px;
             margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
             padding-bottom: 10px;
         }
-        
+
         .section-title:first-of-type {
             margin-top: 0;
         }
@@ -249,8 +297,8 @@
         input[type="file"] {
             width: 100%;
             padding: 12px 15px;
-            background: rgba(139,0,0,0.1);
-            border: 1px solid rgba(255,215,0,0.2);
+            background: rgba(139, 0, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
             border-radius: 4px;
             color: var(--white);
             font-family: 'Rajdhani', sans-serif;
@@ -263,13 +311,13 @@
         input[type="file"]:focus {
             outline: none;
             border-color: var(--gold-warm);
-            background: rgba(139,0,0,0.2);
-            box-shadow: 0 0 10px rgba(240,165,0,0.2);
+            background: rgba(139, 0, 0, 0.2);
+            box-shadow: 0 0 10px rgba(240, 165, 0, 0.2);
         }
 
         input[type="file"]::file-selector-button {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.3);
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             color: var(--gold-pure);
             padding: 6px 12px;
             border-radius: 2px;
@@ -280,7 +328,7 @@
         }
 
         input[type="file"]::file-selector-button:hover {
-            background: rgba(255,215,0,0.2);
+            background: rgba(255, 215, 0, 0.2);
         }
 
         button {
@@ -309,23 +357,44 @@
             transition: opacity 0.3s;
         }
 
-        button:hover::before { opacity: 1; }
+        button:hover::before {
+            opacity: 1;
+        }
+
         button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,51,51,0.4);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.4);
         }
-        
-        button span { position: relative; z-index: 1; }
+
+        button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.4), rgba(0, 150, 200, 0.8));
+            z-index: 0;
+            transition: width 0.3s ease;
+            border-radius: 8px;
+        }
 
         button:disabled {
-            background: rgba(139,0,0,0.5);
-            border-color: rgba(255,215,0,0.1);
-            color: rgba(255,215,0,0.5);
+            background: rgba(139, 0, 0, 0.5);
+            border-color: rgba(255, 215, 0, 0.1);
+            color: rgba(255, 215, 0, 0.5);
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-        button:disabled::before { display: none; }
+
+        button:disabled::before {
+            display: none;
+        }
 
         #status {
             margin-top: 20px;
@@ -336,11 +405,121 @@
             letter-spacing: 1px;
         }
 
+        /* ── TABS (PAGINATION) ── */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background: rgba(10, 5, 5, 0.6);
+            border: 1px solid var(--gold-dark);
+            color: var(--text-dim);
+            padding: 10px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--gold-pure);
+            color: var(--white);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--red-deep), var(--red-fire));
+            color: var(--gold-pure);
+            border-color: var(--gold-pure);
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+        }
+
+        [data-theme="light"] .tab-btn {
+            background: #e9ecef;
+            color: #495057;
+            border-color: #adb5bd;
+        }
+
+        [data-theme="light"] .tab-btn.active {
+            background: linear-gradient(135deg, var(--red-deep), var(--red-fire));
+            color: var(--gold-pure);
+            border-color: var(--gold-pure);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        .coming-soon-container {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-dim);
+        }
+
+        .coming-soon-container .lock-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.2));
+            animation: bounceIn 1s ease both;
+        }
+
+        .coming-soon-container h3 {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 18px;
+            color: var(--cyan-bright);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .coming-soon-container p {
+            font-size: 16px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             .countdown-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
             .form-container {
                 padding: 25px;
             }
@@ -384,81 +563,135 @@
         </div>
 
         <div class="form-container">
-            <form id="submissionForm">
+            <div class="tab-nav">
+                <button type="button" class="tab-btn active" onclick="switchTab('abstrak')">Abstrak</button>
+                <button type="button" class="tab-btn" onclick="switchTab('fullpaper')">Fullpaper</button>
+            </div>
 
-                <div class="section-title">Informasi Tim</div>
-                <div class="form-group">
-                    <label>Nama Tim</label>
-                    <input type="text" id="namaTim" required>
-                </div>
-                <div class="form-group">
-                    <label>Asal Universitas</label>
-                    <input type="text" id="asalUniv" required>
-                </div>
+            <div id="tab-abstrak" class="tab-pane active">
+                <form id="submissionForm">
 
-                <div class="section-title">Data Ketua Tim</div>
-                <div class="form-group">
-                    <label>Nama Ketua</label>
-                    <input type="text" id="namaKetua" required>
-                </div>
-                <div class="form-group">
-                    <label>NIM Ketua</label>
-                    <input type="text" id="nimKetua" required>
-                </div>
-                <div class="form-group">
-                    <label>Jurusan Ketua</label>
-                    <input type="text" id="jurusanKetua" required>
-                </div>
+                    <div class="section-title">Informasi Tim</div>
+                    <div class="form-group">
+                        <label>Nama Tim</label>
+                        <input type="text" id="namaTim" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Asal Universitas</label>
+                        <input type="text" id="asalUniv" required>
+                    </div>
 
-                <div class="section-title">Data Anggota 1</div>
-                <div class="form-group">
-                    <label>Nama Anggota 1</label>
-                    <input type="text" id="namaAnggota1" required>
-                </div>
-                <div class="form-group">
-                    <label>NIM Anggota 1</label>
-                    <input type="text" id="nimAnggota1" required>
-                </div>
-                <div class="form-group">
-                    <label>Jurusan Anggota 1</label>
-                    <input type="text" id="jurusanAnggota1" required>
-                </div>
+                    <div class="section-title">Data Ketua Tim</div>
+                    <div class="form-group">
+                        <label>Nama Ketua</label>
+                        <input type="text" id="namaKetua" required>
+                    </div>
+                    <div class="form-group">
+                        <label>NIM Ketua</label>
+                        <input type="text" id="nimKetua" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jurusan Ketua</label>
+                        <input type="text" id="jurusanKetua" required>
+                    </div>
 
-                <div class="section-title">Data Anggota 2</div>
-                <div class="form-group">
-                    <label>Nama Anggota 2</label>
-                    <input type="text" id="namaAnggota2" required>
-                </div>
-                <div class="form-group">
-                    <label>NIM Anggota 2</label>
-                    <input type="text" id="nimAnggota2" required>
-                </div>
-                <div class="form-group">
-                    <label>Jurusan Anggota 2</label>
-                    <input type="text" id="jurusanAnggota2" required>
-                </div>
+                    <div class="section-title">Data Anggota 1</div>
+                    <div class="form-group">
+                        <label>Nama Anggota 1</label>
+                        <input type="text" id="namaAnggota1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>NIM Anggota 1</label>
+                        <input type="text" id="nimAnggota1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jurusan Anggota 1</label>
+                        <input type="text" id="jurusanAnggota1" required>
+                    </div>
 
-                <div class="section-title">Upload Berkas</div>
-                <div class="form-group">
-                    <label>Upload File KTM (Jadikan 1 file PDF/Gambar)</label>
-                    <input type="file" id="inputKtm" accept=".pdf, image/*" required>
-                </div>
-                <div class="form-group">
-                    <label>Upload File Karya (Format .pdf max 5MB disarankan)</label>
-                    <input type="file" id="inputKarya" accept=".pdf" required>
-                </div>
+                    <div class="section-title">Data Anggota 2</div>
+                    <div class="form-group">
+                        <label>Nama Anggota 2</label>
+                        <input type="text" id="namaAnggota2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>NIM Anggota 2</label>
+                        <input type="text" id="nimAnggota2" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jurusan Anggota 2</label>
+                        <input type="text" id="jurusanAnggota2" required>
+                    </div>
 
-                <button type="submit" id="btnSubmit"><span>Kirim Submission</span></button>
-                <div id="status"></div>
-            </form>
+                    <div class="section-title">Upload Berkas</div>
+                    <div class="form-group">
+                        <label>Upload File KTM (Jadikan 1 file PDF/Gambar)</label>
+                        <input type="file" id="inputKtm" accept=".pdf, image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload File Karya (Format .pdf max 5MB disarankan)</label>
+                        <input type="file" id="inputKarya" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bukti Upload Twibbon (Format .pdf)</label>
+                        <input type="file" id="inputTwibon" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bukti Share Pamflet (Format .pdf)</label>
+                        <input type="file" id="inputPamflet" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Bukti Follow Sosmed (Format .pdf)</label>
+                        <input type="file" id="inputSosmed" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lembar Orisinalitas Karya (Format .pdf)</label>
+                        <input type="file" id="inputOrisinalitas" accept=".pdf" required>
+                    </div>
+
+                    <button type="submit" id="btnSubmit">
+                        <div id="btnProgress" class="btn-progress-fill"></div>
+                        <span id="btnText">Kirim Submission</span>
+                    </button>
+                    <div id="status"></div>
+                </form>
+            </div>
+
+            <div id="tab-fullpaper" class="tab-pane">
+                <div class="coming-soon-container">
+                    <div class="lock-icon">🔒</div>
+                    <h3>COMING SOON</h3>
+                    <p>Tahap Fullpaper belum dibuka. Pantau terus informasi selanjutnya!</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        // Tab logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+
+            // Activate clicked tab button
+            const buttons = document.querySelectorAll('.tab-btn');
+            if (tabId === 'abstrak') {
+                buttons[0].classList.add('active');
+            } else {
+                buttons[1].classList.add('active');
+            }
+
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
         // Particles setup
-        (function() {
+        (function () {
             const container = document.getElementById('particles');
-            const colors = ['#FFD700','#FF6B00','#FF3333','#00E5FF'];
+            const colors = ['#FFD700', '#FF6B00', '#FF3333', '#00E5FF'];
             for (let i = 0; i < 25; i++) {
                 const el = document.createElement('span');
                 el.style.left = Math.random() * 100 + '%';
@@ -491,14 +724,31 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Fungsi mengubah file menjadi Base64
-        function getBase64(file) {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result.split(',')[1]); // Hanya ambil teks base64
-                reader.onerror = error => reject(error);
-            });
+        // Konfigurasi Supabase
+        const SUPABASE_URL = "https://hikhodkteetrfzswklxs.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhpa2hvZGt0ZWV0cmZ6c3drbHhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTU1MjksImV4cCI6MjA5NjY3MTUyOX0.M7vI2Am0NNeGUvITVUYQo50HE7rA7JR4XbAu6_n590M";
+        const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const BUCKET_NAME = "file lomba";
+
+        // Fungsi Pembantu untuk Mengunggah File ke Storage
+        async function uploadFileToStorage(folderName, file) {
+            if (!file) return null;
+
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+            const filePath = `${folderName}/${fileName}`;
+
+            const { data, error } = await dbClient.storage
+                .from(BUCKET_NAME)
+                .upload(filePath, file);
+
+            if (error) throw new Error(`Gagal upload berkas ${folderName}: ${error.message}`);
+
+            const { data: urlData } = dbClient.storage
+                .from(BUCKET_NAME)
+                .getPublicUrl(filePath);
+
+            return urlData.publicUrl;
         }
 
         // Fungsi utama pengiriman form
@@ -507,63 +757,105 @@
 
             const btnSubmit = document.getElementById('btnSubmit');
             const statusDiv = document.getElementById('status');
+            const btnProgress = document.getElementById('btnProgress');
+            const btnText = document.getElementById('btnText');
 
             btnSubmit.disabled = true;
-            btnSubmit.innerHTML = '<span>Mengunggah Data...</span>';
+            btnProgress.style.width = '0%';
+            btnText.innerText = 'Mengunggah... 0%';
             statusDiv.style.color = '#CCAA88';
-            statusDiv.innerText = 'Sedang memproses file, jangan tutup halaman ini...';
+            statusDiv.innerText = 'Sedang mengunggah berkas ke server, mohon tunggu...';
+
+            let progressValue = 0;
+            window.progressInterval = setInterval(() => {
+                if (progressValue < 90) {
+                    progressValue += Math.random() * 10;
+                    if (progressValue > 90) progressValue = 90;
+                    btnProgress.style.width = progressValue + '%';
+                    btnText.innerText = `Mengunggah... ${Math.floor(progressValue)}%`;
+                }
+            }, 300);
 
             try {
                 const fileKtm = document.getElementById('inputKtm').files[0];
                 const fileKarya = document.getElementById('inputKarya').files[0];
+                const fileTwibon = document.getElementById('inputTwibon').files[0];
+                const filePamflet = document.getElementById('inputPamflet').files[0];
+                const fileSosmed = document.getElementById('inputSosmed').files[0];
+                const fileOrisinalitas = document.getElementById('inputOrisinalitas').files[0];
 
-                // Konversi file ke base64
-                const base64Ktm = await getBase64(fileKtm);
-                const base64Karya = await getBase64(fileKarya);
+                // Proses upload asinkron ke Supabase Storage secara paralel
+                const [
+                    urlKtm,
+                    urlKarya,
+                    urlTwibon,
+                    urlPamflet,
+                    urlSosmed,
+                    urlOrisinalitas
+                ] = await Promise.all([
+                    uploadFileToStorage('ktm', fileKtm),
+                    uploadFileToStorage('karya', fileKarya),
+                    uploadFileToStorage('twibon', fileTwibon),
+                    uploadFileToStorage('pamflet', filePamflet),
+                    uploadFileToStorage('sosmed', fileSosmed),
+                    uploadFileToStorage('orisinalitas', fileOrisinalitas)
+                ]);
 
-                // Susun data sesuai urutan Apps Script
-                const payload = {
-                    namaTim: document.getElementById('namaTim').value,
-                    asalUniversitas: document.getElementById('asalUniv').value,
-                    namaKetua: document.getElementById('namaKetua').value,
-                    nimKetua: document.getElementById('nimKetua').value,
-                    jurusanKetua: document.getElementById('jurusanKetua').value,
-                    namaAnggota1: document.getElementById('namaAnggota1').value,
-                    nimAnggota1: document.getElementById('nimAnggota1').value,
-                    jurusanAnggota1: document.getElementById('jurusanAnggota1').value,
-                    namaAnggota2: document.getElementById('namaAnggota2').value,
-                    nimAnggota2: document.getElementById('nimAnggota2').value,
-                    jurusanAnggota2: document.getElementById('jurusanAnggota2').value,
-                    fileKtmBase64: base64Ktm,
-                    fileKtmMime: fileKtm.type,
-                    fileKaryaBase64: base64Karya
-                };
+                statusDiv.innerText = 'Berkas terunggah! Memasukkan data ke database...';
 
-                // GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA
-                const scriptUrl = "https://script.google.com/macros/s/AKfycbxzMBO6W8n-D2scLbnZDVG4hMKKib7sdToL50DxD4AOOXG70WZL8OyzSJTCBka75Fes/exec";
+                // Memasukkan data ke database
+                const { data: insertData, error: insertError } = await dbClient
+                    .from('data_peserta_KTI')
+                    .insert([
+                        {
+                            waktu_submit: new Date().toISOString(),
+                            nama_tim: document.getElementById('namaTim').value,
+                            asal_universitas: document.getElementById('asalUniv').value,
+                            nama_ketua_tim: document.getElementById('namaKetua').value,
+                            nim_ketua: document.getElementById('nimKetua').value,
+                            jurusan_ketua: document.getElementById('jurusanKetua').value,
+                            nama_anggota1: document.getElementById('namaAnggota1').value || null,
+                            nim_anggota1: document.getElementById('nimAnggota1').value || null,
+                            jurusan_anggota1: document.getElementById('jurusanAnggota1').value || null,
+                            nama_anggota2: document.getElementById('namaAnggota2').value || null,
+                            nim_anggota2: document.getElementById('nimAnggota2').value || null,
+                            jurusan_anggota2: document.getElementById('jurusanAnggota2').value || null,
+                            url_ktm: urlKtm,
+                            url_karya: urlKarya,
+                            bukti_upload_twibon: urlTwibon,
+                            Bukti_Share_pamflet: urlPamflet,
+                            bukti_follow_sosmed: urlSosmed,
+                            Lembar_orisinalitas_karya: urlOrisinalitas
+                        }
+                    ])
+                    .select();
 
-                // Kirim request POST ke Apps Script
-                const response = await fetch(scriptUrl, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    window.location.href = 'thankyou.html';
-                } else {
-                    statusDiv.style.color = '#FF3333'; // red-fire
-                    statusDiv.innerText = result.message; // Tampilkan error (misal: NIM duplikat)
+                if (insertError) {
+                    if (insertError.code === '23505') {
+                        throw new Error("Gagal: NIM Ketua ini sudah melakukan submission sebelumnya!");
+                    }
+                    throw new Error(insertError.message);
                 }
 
+                clearInterval(window.progressInterval);
+                btnProgress.style.width = '100%';
+                btnText.innerText = 'Selesai! 100%';
+
+                // Sukses
+                window.location.href = 'thankyou.html';
+
             } catch (error) {
+                clearInterval(window.progressInterval);
+                btnProgress.style.width = '0%';
+                btnText.innerText = 'Gagal Mengunggah';
                 console.error('Error:', error);
-                statusDiv.style.color = '#FF3333';
-                statusDiv.innerText = 'Terjadi kesalahan koneksi. Silakan coba lagi.';
+                statusDiv.style.color = '#FF3333'; // red-fire
+                statusDiv.innerText = error.message || 'Terjadi kesalahan sistem, silakan coba lagi.';
             } finally {
                 btnSubmit.disabled = false;
-                btnSubmit.innerHTML = '<span>Kirim Submission</span>';
+                if (statusDiv.style.color === 'rgb(255, 51, 51)' || statusDiv.style.color === '#FF3333') {
+                    btnText.innerText = 'Kirim Ulang';
+                }
             }
         });
     </script>
