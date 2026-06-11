@@ -1391,6 +1391,167 @@
       letter-spacing: 1px;
     }
 
+    /* ── TIMELINE ── */
+    .timeline-wrapper {
+      position: relative;
+      width: 100%;
+      height: 350vh;
+      background: var(--bg-darkest);
+    }
+    
+    .timeline-sticky {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5%;
+    }
+
+    .timeline-svg-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    #timeline-path {
+      fill: none;
+      stroke: var(--gold-pure);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.6));
+      /* transition removed here so JS scroll sync is immediate */
+    }
+
+    .timeline-grid {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .timeline-row {
+      display: flex;
+      gap: 20px;
+    }
+
+    .row-rtl {
+      flex-direction: row-reverse;
+    }
+
+    .row-ltr {
+      flex-direction: row;
+    }
+
+    .timeline-item {
+      flex: 1 1 0%;
+      min-width: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      opacity: 0.3;
+      transition: all 0.4s ease;
+    }
+
+    .timeline-item.active {
+      opacity: 1;
+    }
+
+    .timeline-dot {
+      width: 20px;
+      height: 20px;
+      background: var(--bg-dark);
+      border: 3px solid var(--text-dim);
+      border-radius: 50%;
+      margin-bottom: 12px;
+      position: relative;
+      transition: all 0.4s ease;
+      z-index: 3;
+      transform: scale(0.8);
+    }
+
+    .timeline-item.active .timeline-dot {
+      background: var(--gold-pure);
+      border-color: var(--gold-pure);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+      transform: scale(1);
+    }
+
+    .timeline-date {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: var(--cyan-bright);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .timeline-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-grid {
+        flex-direction: column;
+        gap: 0;
+        max-width: 320px;
+      }
+      .timeline-row {
+        flex-direction: column !important;
+        gap: 0;
+      }
+      .timeline-item {
+        flex-direction: row;
+        text-align: left;
+        margin-bottom: 16px;
+        align-items: flex-start;
+      }
+      .timeline-dot {
+        margin-bottom: 0;
+        margin-right: 20px;
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+      }
+      .timeline-content-text {
+        padding-top: 0px;
+      }
+      .timeline-date {
+        font-size: 6px;
+        margin-bottom: 4px;
+      }
+      .timeline-title {
+        font-size: 13px;
+      }
+      .timeline-sticky {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+      .timeline-wrapper {
+        height: 400vh; /* slightly longer for mobile reading */
+      }
+      .timeline-svg-container {
+        opacity: 0 !important;
+      }
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeIn {
       from {
@@ -1579,36 +1740,57 @@
       overflow: hidden;
     }
 
-    .skip-text {
+    .intro-skip {
       position: absolute;
       bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.8);
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-      cursor: pointer;
-      animation: pulseSkip 1.5s infinite;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       z-index: 10000;
       pointer-events: none;
-      /* Let clicks pass through to the overlay */
     }
 
-    @keyframes pulseSkip {
+    .skip-text-new {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 7px;
+      color: rgba(255, 215, 0, 0.5);
+      letter-spacing: 2px;
+      display: block;
+    }
 
+    .skip-arrow {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .skip-arrow span {
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-top: 2px solid var(--gold-warm);
+      border-right: 2px solid var(--gold-warm);
+      transform: rotate(45deg);
+      animation: skipBounce 1.5s ease-in-out infinite;
+    }
+
+    .skip-arrow span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .skip-arrow span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes skipBounce {
       0%,
       100% {
-        opacity: 0.5;
-        transform: translateX(-50%) scale(1);
+        opacity: 0.2;
       }
-
       50% {
         opacity: 1;
-        transform: translateX(-50%) scale(1.1);
-        color: var(--gold-pure);
-        text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
       }
     }
   </style>
@@ -1622,7 +1804,12 @@
       <source src="intro 2.mp4" type="video/mp4">
       Browser Anda tidak mendukung elemen video.
     </video>
-    <div class="skip-text">KLIK UNTUK MELEWATI</div>
+    <div class="intro-skip">
+      <span class="skip-text-new">KLIK UNTUK MELEWATI</span>
+      <div class="skip-arrow">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </div>
 
   <!-- ── NAVIGATION ── -->
@@ -1936,6 +2123,118 @@
     </div>
   </section>
 
+  <!-- ── TIMELINE LKTI ── -->
+  <section id="timeline" class="timeline-wrapper">
+    <div class="timeline-sticky">
+      <div class="section-header" style="margin-bottom: 40px; position: relative; z-index: 2;">
+        <span class="section-tag">Jadwal</span>
+        <h2 class="section-title">Timeline LKTI</h2>
+        <div class="section-divider"></div>
+      </div>
+      
+      <svg class="timeline-svg-container">
+        <path id="timeline-path"></path>
+      </svg>
+      
+      <div class="timeline-grid" id="timeline-grid">
+        <!-- Baris 1: Kiri ke Kanan -->
+        <div class="timeline-row row-ltr">
+          <div class="timeline-item" data-index="0">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">12 Jun - 4 Jul 2026</div>
+              <div class="timeline-title">Pendaftaran &amp; Submission Abstrak</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="1">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">5 - 7 Jul 2026</div>
+              <div class="timeline-title">Penilaian Abstrak</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">8 Jul 2026</div>
+              <div class="timeline-title">Pengumuman Lolos Abstrak</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 2: Kanan ke Kiri -->
+        <div class="timeline-row row-rtl">
+          <div class="timeline-item" data-index="3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">9 Jul - 21 Jul 2026</div>
+              <div class="timeline-title">Submission Full Paper (Batch 1)</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="4">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">22 Jul - 28 Jul 2026</div>
+              <div class="timeline-title">Submission Full Paper (Batch 2)</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="5">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">29 Jul - 2 Agu 2026</div>
+              <div class="timeline-title">Submission Full Paper (Batch 3)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 3: Kiri ke Kanan -->
+        <div class="timeline-row row-ltr">
+          <div class="timeline-item" data-index="6">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">3 - 5 Agu 2026</div>
+              <div class="timeline-title">Penilaian Full Paper</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="7">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">6 - 11 Agu 2026</div>
+              <div class="timeline-title">Pengumpulan Poster</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="8">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">12 - 21 Agu 2026</div>
+              <div class="timeline-title">Upload Poster</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Baris 4: Kanan ke Kiri -->
+        <div class="timeline-row row-rtl">
+          <div class="timeline-item" data-index="9">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">15 Agu 2026</div>
+              <div class="timeline-title">Technical Meeting</div>
+            </div>
+          </div>
+          <div class="timeline-item" data-index="10">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content-text">
+              <div class="timeline-date">22 Agu 2026</div>
+              <div class="timeline-title">Presentasi Finalis</div>
+            </div>
+          </div>
+          <!-- Spacer for desktop alignment -->
+          <div class="timeline-item" style="visibility: hidden; pointer-events: none;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── JUDGES & SPEAKERS ── -->
   <section id="juri">
     <div class="container">
@@ -2245,6 +2544,88 @@
         }
       }, 5000);
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // --- TIMELINE LOGIC ---
+      const timelineWrapper = document.querySelector('.timeline-wrapper');
+      const timelinePath = document.getElementById('timeline-path');
+      const timelineItems = Array.from(document.querySelectorAll('.timeline-item[data-index]'));
+      
+      if (timelineWrapper && timelinePath && timelineItems.length > 0) {
+        timelineItems.sort((a, b) => parseInt(a.getAttribute('data-index')) - parseInt(b.getAttribute('data-index')));
+        let pathLength = 0;
+
+        function drawTimelinePath() {
+          const svgContainer = document.querySelector('.timeline-svg-container');
+          const svgRect = svgContainer.getBoundingClientRect();
+          
+          let d = '';
+          let currentLength = 0;
+          let points = [];
+          
+          timelineItems.forEach((item, index) => {
+            const dot = item.querySelector('.timeline-dot');
+            const dotRect = dot.getBoundingClientRect();
+            
+            const x = dotRect.left + dotRect.width / 2 - svgRect.left;
+            const y = dotRect.top + dotRect.height / 2 - svgRect.top;
+            
+            points.push({x, y});
+            
+            if (index === 0) {
+              d += `M ${x} ${y} `;
+              item.triggerLength = 0;
+            } else {
+              d += `L ${x} ${y} `;
+              const prev = points[index-1];
+              const segmentLength = Math.hypot(x - prev.x, y - prev.y);
+              currentLength += segmentLength;
+              item.triggerLength = currentLength;
+            }
+          });
+          
+          timelinePath.setAttribute('d', d);
+          pathLength = timelinePath.getTotalLength();
+          timelinePath.style.strokeDasharray = pathLength;
+          timelinePath.style.strokeDashoffset = pathLength;
+          
+          timelineItems.forEach(item => {
+              item.triggerProgress = item.triggerLength / pathLength;
+          });
+          
+          updateTimelineScroll();
+        }
+
+        function updateTimelineScroll() {
+          const rect = timelineWrapper.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Calculate progress through the 350vh wrapper
+          let progress = -rect.top / (rect.height - windowHeight);
+          
+          if (progress < 0) progress = 0;
+          if (progress > 1) progress = 1;
+          
+          timelinePath.style.strokeDashoffset = pathLength * (1 - progress);
+          
+          timelineItems.forEach((item) => {
+            // activate slightly before the line hits the exact center for better visual sync
+            if (progress >= item.triggerProgress - 0.02) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        }
+
+        window.addEventListener('resize', drawTimelinePath);
+        window.addEventListener('scroll', updateTimelineScroll);
+        
+        // Initial drawing
+        setTimeout(drawTimelinePath, 100);
+        window.addEventListener('load', drawTimelinePath);
+      }
+    });
   </script>
 </body>
 
