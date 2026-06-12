@@ -617,17 +617,49 @@
 
     .tentang-img-frame {
       position: relative;
-      display: inline-block;
+      display: block;
       width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding-top: 56.25%; /* Horizontal 16:9 aspect ratio */
+      background: var(--bg-dark);
+      border-radius: 8px;
     }
 
-    .chibi-img {
+    .tentang-video {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 340px;
-      display: block;
-      margin: 0 auto;
-      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.3));
-      animation: floatMascot 5s ease-in-out infinite;
+      height: 100%;
+      border: none;
+      z-index: 2;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .unmute-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--gold-warm);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: all 0.3s ease;
+    }
+
+    .unmute-btn:hover {
+      background: rgba(255, 215, 0, 0.2);
+      transform: scale(1.1);
     }
 
     .frame-border {
@@ -1877,7 +1909,15 @@
       <div class="tentang-grid">
         <div class="tentang-visual reveal">
           <div class="tentang-img-frame">
-            <img src="maskot 3.png" alt="TFS Mascot" class="chibi-img" />
+            <video id="tfs-video" src="tfs.mp4" class="tentang-video" autoplay muted loop playsinline></video>
+            <button id="unmute-btn" class="unmute-btn" aria-label="Toggle Sound">
+              <!-- Muted Icon Default -->
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
             <div class="frame-border"></div>
           </div>
         </div>
@@ -2624,6 +2664,39 @@
         // Initial drawing
         setTimeout(drawTimelinePath, 100);
         window.addEventListener('load', drawTimelinePath);
+      }
+
+      // Autoplay Native Video on Scroll
+      const tfsVideo = document.getElementById('tfs-video');
+      const unmuteBtn = document.getElementById('unmute-btn');
+      
+      if (tfsVideo) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              tfsVideo.play().catch(e => console.log("Autoplay blocked:", e));
+            } else {
+              tfsVideo.pause();
+            }
+          });
+        }, { threshold: 0.1 });
+        videoObserver.observe(document.querySelector('.tentang-visual'));
+        
+        // Mute/Unmute Logic
+        if (unmuteBtn) {
+          const svgMuted = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
+          const svgUnmuted = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
+          
+          unmuteBtn.addEventListener('click', () => {
+            tfsVideo.muted = !tfsVideo.muted;
+            unmuteBtn.innerHTML = tfsVideo.muted ? svgMuted : svgUnmuted;
+            if(tfsVideo.muted) {
+              unmuteBtn.style.background = 'rgba(0, 0, 0, 0.6)';
+            } else {
+              unmuteBtn.style.background = 'rgba(255, 215, 0, 0.4)';
+            }
+          });
+        }
       }
     });
   </script>
