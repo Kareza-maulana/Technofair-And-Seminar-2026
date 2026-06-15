@@ -621,7 +621,8 @@
       width: 100%;
       max-width: 560px;
       margin: 0 auto;
-      padding-top: 56.25%; /* Horizontal 16:9 aspect ratio */
+      padding-top: 56.25%;
+      /* Horizontal 16:9 aspect ratio */
       background: var(--bg-dark);
       border-radius: 8px;
     }
@@ -1288,6 +1289,20 @@
       gap: 16px;
     }
 
+    .social-cards {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .social-cards .judge-card {
+      min-width: 250px;
+      flex: 1;
+      max-width: 300px;
+    }
+
     .cp-card {
       background: linear-gradient(145deg, rgba(25, 8, 8, 0.9), rgba(12, 4, 4, 0.95));
       border: 1px solid rgba(255, 215, 0, 0.15);
@@ -1430,7 +1445,7 @@
       height: 350vh;
       background: var(--bg-darkest);
     }
-    
+
     .timeline-sticky {
       position: sticky;
       top: 0;
@@ -1545,16 +1560,19 @@
         gap: 0;
         max-width: 320px;
       }
+
       .timeline-row {
         flex-direction: column !important;
         gap: 0;
       }
+
       .timeline-item {
         flex-direction: row;
         text-align: left;
         margin-bottom: 16px;
         align-items: flex-start;
       }
+
       .timeline-dot {
         margin-bottom: 0;
         margin-right: 20px;
@@ -1562,23 +1580,30 @@
         width: 16px;
         height: 16px;
       }
+
       .timeline-content-text {
         padding-top: 0px;
       }
+
       .timeline-date {
         font-size: 6px;
         margin-bottom: 4px;
       }
+
       .timeline-title {
         font-size: 13px;
       }
+
       .timeline-sticky {
         padding-top: 20px;
         padding-bottom: 20px;
       }
+
       .timeline-wrapper {
-        height: 400vh; /* slightly longer for mobile reading */
+        height: 400vh;
+        /* slightly longer for mobile reading */
       }
+
       .timeline-svg-container {
         opacity: 0 !important;
       }
@@ -1817,10 +1842,12 @@
     }
 
     @keyframes skipBounce {
+
       0%,
       100% {
         opacity: 0.2;
       }
+
       50% {
         opacity: 1;
       }
@@ -1912,7 +1939,8 @@
             <video id="tfs-video" src="tfs.mp4" class="tentang-video" autoplay muted loop playsinline></video>
             <button id="unmute-btn" class="unmute-btn" aria-label="Toggle Sound">
               <!-- Muted Icon Default -->
-              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                 <line x1="23" y1="9" x2="17" y2="15"></line>
                 <line x1="17" y1="9" x2="23" y2="15"></line>
@@ -1978,7 +2006,7 @@
             <li><span class="lbl">Pendaftaran</span> 1 Juni &ndash; 31 Juli 2026</li>
             <li><span class="lbl">Pengumpulan</span> 8 Juli 2026</li>
             <li><span class="lbl">Peserta</span> Mahasiswa S1/D4 (Maks. 3 orang)</li>
-            <li><span class="lbl">Biaya</span> Rp 95.000</li>
+            <li><span class="lbl">Biaya</span> Gratis (hanya untuk Abstrak)</li>
             <li><span class="lbl">Output</span> Karya Tulis Ilmiah</li>
           </ul>
           <a href="LKTI.html" class="reg-btn lkti">&#9658; INFO SELENGKAPNYA</a>
@@ -2170,11 +2198,11 @@
         <h2 class="section-title">Timeline LKTI</h2>
         <div class="section-divider"></div>
       </div>
-      
+
       <svg class="timeline-svg-container">
         <path id="timeline-path"></path>
       </svg>
-      
+
       <div class="timeline-grid" id="timeline-grid">
         <!-- Baris 1: Kiri ke Kanan -->
         <div class="timeline-row row-ltr">
@@ -2285,25 +2313,29 @@
       <div class="judges-grid">
 
         <div class="judge-card reveal reveal-delay-1">
-          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
+          <div class="judge-avatar"><span
+              style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-judge">JURI LKTI</span>
           <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-2">
-          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
+          <div class="judge-avatar"><span
+              style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-judge">JURI LKTI</span>
           <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-3">
-          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
+          <div class="judge-avatar"><span
+              style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-speaker">NARASUMBER</span>
           <div class="judge-name">COMING SOON</div>
         </div>
 
         <div class="judge-card reveal reveal-delay-4">
-          <div class="judge-avatar"><span style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
+          <div class="judge-avatar"><span
+              style="font-family: 'Press Start 2P', monospace; color: var(--gold-pure);">?</span></div>
           <span class="judge-role-badge badge-motivator">MOTIVATOR</span>
           <div class="judge-name">COMING SOON</div>
         </div>
@@ -2418,58 +2450,105 @@
           <h3>&#128222; CONTACT PERSON TFS 2026</h3>
           <div class="cp-cards">
             <div class="cp-card">
-              <div class="cp-avatar">&#128104;</div>
+              <div class="cp-avatar">&#128105;</div>
               <div class="cp-info">
                 <div class="cp-role">CP LKTI</div>
-                <div class="cp-name">Arif Setiawan</div>
-                <div class="cp-number">+62 812-3456-7890</div>
+                <div class="cp-name">Reffa</div>
+                <div class="cp-number">+62 831-8736-0497</div>
               </div>
-              <a href="https://wa.me/6281234567890" class="cp-wa-btn" target="_blank">
+              <a href="https://wa.me/6283187360497" class="cp-wa-btn" target="_blank">
                 &#128172; WA
               </a>
             </div>
             <div class="cp-card">
               <div class="cp-avatar">&#128105;</div>
               <div class="cp-info">
-                <div class="cp-role">CP WEBINAR</div>
-                <div class="cp-name">Dina Rahayu</div>
-                <div class="cp-number">+62 813-9876-5432</div>
+                <div class="cp-role">CP LKTI</div>
+                <div class="cp-name">Azizah</div>
+                <div class="cp-number">+62 831-8736-0492</div>
               </div>
-              <a href="https://wa.me/6281398765432" class="cp-wa-btn" target="_blank">
+              <a href="https://wa.me/6283187360492" class="cp-wa-btn" target="_blank">
                 &#128172; WA
               </a>
             </div>
-          </div>
 
-          <h3 style="margin-top: 36px;">&#128247; SOCIAL MEDIA</h3>
-          <div class="cp-cards">
-            <div class="cp-card">
-              <div class="cp-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              </div>
-              <div class="cp-info">
-                <div class="cp-role">INSTAGRAM</div>
-                <div class="cp-name">TFS Polinema</div>
-                <div class="cp-number">@tfs_polinema</div>
-              </div>
-              <a href="https://www.instagram.com/tfs_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15);">
-                KUNJUNGI
-              </a>
-            </div>
-            <div class="cp-card">
-              <div class="cp-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              </div>
-              <div class="cp-info">
-                <div class="cp-role">INSTAGRAM</div>
-                <div class="cp-name">UKMPP Polinema</div>
-                <div class="cp-number">@ukmpp_polinema</div>
-              </div>
-              <a href="https://www.instagram.com/ukmpp_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15);">
-                KUNJUNGI
-              </a>
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOCIAL MEDIA ── -->
+  <section id="social-media">
+    <div class="container">
+      <div class="section-glass-wrap">
+        <div class="glass-card reveal">
+          <div class="section-header">
+            <span class="section-tag">Terhubung</span>
+            <h2 class="section-title">Follow Sosial media kami</h2>
+            <div class="section-divider"></div>
+          </div>
+          <div class="judges-grid">
+            <div class="judge-card reveal">
+              <div class="judge-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; margin: 0 auto 20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <span class="judge-role-badge" style="background: rgba(225, 48, 108, 0.15); color: #E1306C; border-color: rgba(225, 48, 108, 0.4);">INSTAGRAM</span>
+              <div class="judge-name" style="margin-bottom: 4px;">TFS Polinema</div>
+              <div style="color: var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 14px;">@tfs_polinema</div>
+              <a href="https://www.instagram.com/tfs_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="margin-top: 24px; color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15); display: inline-flex;">
+                KUNJUNGI
+              </a>
+            </div>
+            
+            <div class="judge-card reveal reveal-delay-1">
+              <div class="judge-avatar" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-color: transparent; margin: 0 auto 20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </div>
+              <span class="judge-role-badge" style="background: rgba(225, 48, 108, 0.15); color: #E1306C; border-color: rgba(225, 48, 108, 0.4);">INSTAGRAM</span>
+              <div class="judge-name" style="margin-bottom: 4px;">UKMPP Polinema</div>
+              <div style="color: var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 14px;">@ukmpp_polinema</div>
+              <a href="https://www.instagram.com/ukmpp_polinema?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="cp-wa-btn" target="_blank" style="margin-top: 24px; color: #E1306C; border-color: rgba(225, 48, 108, 0.4); background: rgba(225, 48, 108, 0.15); display: inline-flex;">
+                KUNJUNGI
+              </a>
+            </div>
+
+            <div class="judge-card reveal reveal-delay-2">
+              <div class="judge-avatar" style="background: #000000; border-color: transparent; margin: 0 auto 20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                </svg>
+              </div>
+              <span class="judge-role-badge" style="background: rgba(0, 242, 254, 0.15); color: #00f2fe; border-color: rgba(0, 242, 254, 0.4);">TIKTOK</span>
+              <div class="judge-name" style="margin-bottom: 4px;">UKMPP Polinema</div>
+              <div style="color: var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 14px;">@ukmpp_polinema</div>
+              <a href="https://www.tiktok.com/@ukmpp_polinema?is_from_webapp=1&sender_device=pc" class="cp-wa-btn" target="_blank" style="margin-top: 24px; color: #00f2fe; border-color: rgba(0, 242, 254, 0.4); background: rgba(0, 242, 254, 0.15); display: inline-flex;">
+                KUNJUNGI
+              </a>
+            </div>
+
+            <div class="judge-card reveal reveal-delay-3">
+              <div class="judge-avatar" style="background: #ff0000; border-color: transparent; margin: 0 auto 20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                </svg>
+              </div>
+              <span class="judge-role-badge" style="background: rgba(255, 0, 0, 0.15); color: #ff0000; border-color: rgba(255, 0, 0, 0.4);">YOUTUBE</span>
+              <div class="judge-name" style="margin-bottom: 4px;">UKMPP Polinema</div>
+              <div style="color: var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 14px;">@ukmpp2013</div>
+              <a href="https://youtube.com/@ukmpp2013?si=I3S7QNarkZpf7bL9" class="cp-wa-btn" target="_blank" style="margin-top: 24px; color: #ff0000; border-color: rgba(255, 0, 0, 0.4); background: rgba(255, 0, 0, 0.15); display: inline-flex;">
+                KUNJUNGI
+              </a>
+            </div>
         </div>
 
       </div>
@@ -2589,7 +2668,7 @@
       const timelineWrapper = document.querySelector('.timeline-wrapper');
       const timelinePath = document.getElementById('timeline-path');
       const timelineItems = Array.from(document.querySelectorAll('.timeline-item[data-index]'));
-      
+
       if (timelineWrapper && timelinePath && timelineItems.length > 0) {
         timelineItems.sort((a, b) => parseInt(a.getAttribute('data-index')) - parseInt(b.getAttribute('data-index')));
         let pathLength = 0;
@@ -2597,56 +2676,56 @@
         function drawTimelinePath() {
           const svgContainer = document.querySelector('.timeline-svg-container');
           const svgRect = svgContainer.getBoundingClientRect();
-          
+
           let d = '';
           let currentLength = 0;
           let points = [];
-          
+
           timelineItems.forEach((item, index) => {
             const dot = item.querySelector('.timeline-dot');
             const dotRect = dot.getBoundingClientRect();
-            
+
             const x = dotRect.left + dotRect.width / 2 - svgRect.left;
             const y = dotRect.top + dotRect.height / 2 - svgRect.top;
-            
-            points.push({x, y});
-            
+
+            points.push({ x, y });
+
             if (index === 0) {
               d += `M ${x} ${y} `;
               item.triggerLength = 0;
             } else {
               d += `L ${x} ${y} `;
-              const prev = points[index-1];
+              const prev = points[index - 1];
               const segmentLength = Math.hypot(x - prev.x, y - prev.y);
               currentLength += segmentLength;
               item.triggerLength = currentLength;
             }
           });
-          
+
           timelinePath.setAttribute('d', d);
           pathLength = timelinePath.getTotalLength();
           timelinePath.style.strokeDasharray = pathLength;
           timelinePath.style.strokeDashoffset = pathLength;
-          
+
           timelineItems.forEach(item => {
-              item.triggerProgress = item.triggerLength / pathLength;
+            item.triggerProgress = item.triggerLength / pathLength;
           });
-          
+
           updateTimelineScroll();
         }
 
         function updateTimelineScroll() {
           const rect = timelineWrapper.getBoundingClientRect();
           const windowHeight = window.innerHeight;
-          
+
           // Calculate progress through the 350vh wrapper
           let progress = -rect.top / (rect.height - windowHeight);
-          
+
           if (progress < 0) progress = 0;
           if (progress > 1) progress = 1;
-          
+
           timelinePath.style.strokeDashoffset = pathLength * (1 - progress);
-          
+
           timelineItems.forEach((item) => {
             // activate slightly before the line hits the exact center for better visual sync
             if (progress >= item.triggerProgress - 0.02) {
@@ -2659,7 +2738,7 @@
 
         window.addEventListener('resize', drawTimelinePath);
         window.addEventListener('scroll', updateTimelineScroll);
-        
+
         // Initial drawing
         setTimeout(drawTimelinePath, 100);
         window.addEventListener('load', drawTimelinePath);
@@ -2668,7 +2747,7 @@
       // Autoplay Native Video on Scroll
       const tfsVideo = document.getElementById('tfs-video');
       const unmuteBtn = document.getElementById('unmute-btn');
-      
+
       if (tfsVideo) {
         const videoObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
@@ -2680,16 +2759,16 @@
           });
         }, { threshold: 0.1 });
         videoObserver.observe(document.querySelector('.tentang-visual'));
-        
+
         // Mute/Unmute Logic
         if (unmuteBtn) {
           const svgMuted = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
           const svgUnmuted = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>';
-          
+
           unmuteBtn.addEventListener('click', () => {
             tfsVideo.muted = !tfsVideo.muted;
             unmuteBtn.innerHTML = tfsVideo.muted ? svgMuted : svgUnmuted;
-            if(tfsVideo.muted) {
+            if (tfsVideo.muted) {
               unmuteBtn.style.background = 'rgba(0, 0, 0, 0.6)';
             } else {
               unmuteBtn.style.background = 'rgba(255, 215, 0, 0.4)';
