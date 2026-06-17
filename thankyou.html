@@ -206,6 +206,61 @@
             filter: drop-shadow(0 0 20px rgba(50,205,50,0.5));
         }
 
+        /* ── CONTACT CARDS ── */
+        .contact-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.9s ease 0.7s both;
+        }
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(145deg, rgba(30,8,8,0.9), rgba(18,5,5,0.95));
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 8px;
+            padding: 16px 24px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            text-align: left;
+            min-width: 250px;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(255,51,51,0.2);
+            border-color: rgba(255,215,0,0.4);
+        }
+        .contact-icon {
+            font-size: 24px;
+            background: rgba(255,215,0,0.1);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(255,215,0,0.3);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .contact-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold-pure);
+            margin-bottom: 4px;
+        }
+        .contact-num {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+
         /* ── ANIMATIONS ── */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes bounceIn {
@@ -232,8 +287,25 @@
         <p class="message">
             Terima kasih telah berpartisipasi dan mendaftar pada acara Technofair and Seminar (TFS) 2026. Data tim beserta karya Anda telah berhasil kami terima dan masuk ke dalam database kami.
             <br><br>
-            Silakan tunggu informasi lebih lanjut yang akan kami sampaikan melalui email atau grup komunikasi peserta.
+            Silahkan melakukan konfirmasi pendaftaran Abstrak dengan format <strong>“𝗞𝗼𝗻𝗳𝗶𝗿𝗺𝗮𝘀𝗶 𝗙𝘂𝗹𝗹 𝗣𝗮𝗽𝗲𝗿_𝗡𝗮𝗺𝗮 𝗧𝗶𝗺_𝗡𝗮𝗺𝗮 𝗟𝗲𝗻𝗴𝗸𝗮𝗽 𝗞𝗲𝘁𝘂𝗮_𝟯 𝗸𝗮𝘁𝗮 𝗽𝗲𝗿𝘁𝗮𝗺𝗮 𝗝𝘂𝗱𝘂𝗹 𝗞𝗮𝗿𝘆𝗮 𝗧𝘂𝗹𝗶𝘀 𝗜𝗹𝗺𝗶𝗮𝗵”</strong> dengan menyertakan screenshot bukti pengisian formulir ini melalui No.WhatsApp narahubung LKTI:
         </p>
+
+        <div class="contact-cards">
+            <a href="https://wa.me/6283187360492?text=Konfirmasi%20Full%20Paper_Nama%20Tim_Nama%20Lengkap%20Ketua_3%20kata%20pertama%20Judul%20Karya%20Tulis%20Ilmiah" target="_blank" class="contact-card">
+                <div class="contact-icon">📱</div>
+                <div class="contact-info">
+                    <div class="contact-name">Azizah</div>
+                    <div class="contact-num">+62 831-8736-0492</div>
+                </div>
+            </a>
+            <a href="https://wa.me/6283187360497?text=Konfirmasi%20Full%20Paper_Nama%20Tim_Nama%20Lengkap%20Ketua_3%20kata%20pertama%20Judul%20Karya%20Tulis%20Ilmiah" target="_blank" class="contact-card">
+                <div class="contact-icon">📱</div>
+                <div class="contact-info">
+                    <div class="contact-name">Refffa</div>
+                    <div class="contact-num">+62 831-8736-0497</div>
+                </div>
+            </a>
+        </div>
         <a href="index.html" class="btn-back"><span>KEMBALI KE BERANDA</span></a>
     </div>
 
