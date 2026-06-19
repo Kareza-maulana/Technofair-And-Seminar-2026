@@ -1262,7 +1262,7 @@
       <div class="horizontal-pagination">
         <button class="page-btn active" onclick="switchPage('page1', this)">ABSTRAK</button>
         <button class="page-btn" onclick="switchPage('page2', this)">FULLPAPER</button>
-        <button class="page-btn" onclick="switchPage('page3', this)">TWIBON</button>
+        <button class="page-btn" onclick="switchPage('page3', this)">TWIBBON</button>
         <button class="page-btn" onclick="switchPage('page4', this)">BERKAS LKTI</button>
       </div>
       
@@ -1287,7 +1287,7 @@
             <li>Format file PDF dengan format nama file: Abstrak_Nama Tim_Nama Lengkap Ketua_3 kata pertama Judul Karya Tulis Ilmiah.</li>
           </ul>
           <div style="text-align: center;">
-            <a href="https://drive.google.com/uc?export=download&amp;id=1UWKGsteVCN00b5MdILkDvZYQmfJhlkx8" class="btn-primary" style="padding: 12px 24px; font-size: 9px;" target="_blank" rel="noopener noreferrer"><span>&#128190; DOWNLOAD GUIDEBOOK</span></a>
+            <a href="https://drive.google.com/uc?export=download&amp;id=1K0te3u1KcuzOYn6GUL0VJx1wFE7zR1XC" class="btn-primary" style="padding: 12px 24px; font-size: 9px;" target="_blank" rel="noopener noreferrer"><span>&#128190; DOWNLOAD GUIDEBOOK</span></a>
           </div>
         </div>
 
@@ -1347,16 +1347,52 @@
             <li>Peserta menjadi partisipan pameran inovasi pada masing-masing stand dengan memamerkan karya ilmiahnya.</li>
           </ul>
           <div style="text-align: center;">
-            <a href="https://drive.google.com/uc?export=download&amp;id=1UWKGsteVCN00b5MdILkDvZYQmfJhlkx8" class="btn-primary" style="padding: 12px 24px; font-size: 9px;" target="_blank" rel="noopener noreferrer"><span>&#128190; DOWNLOAD GUIDEBOOK</span></a>
+            <a href="https://drive.google.com/uc?export=download&amp;id=1K0te3u1KcuzOYn6GUL0VJx1wFE7zR1XC" class="btn-primary" style="padding: 12px 24px; font-size: 9px;" target="_blank" rel="noopener noreferrer"><span>&#128190; DOWNLOAD GUIDEBOOK</span></a>
           </div>
         </div>
         
-        <!-- Page 3: Twibon -->
+        <!-- Page 3: Twibbon -->
         <div id="page3" class="page-content">
-          <h2 class="section-title" style="font-size: 22px; margin-bottom: 24px; text-align: center;">Twibon</h2>
-          <p style="color: rgba(255,255,255,0.6); font-family: 'Rajdhani', sans-serif; font-size: 16px; text-align: center; margin-top: 60px;">
-            (Halaman ini dikosongi terlebih dahulu)
-          </p>
+          <h2 class="section-title" style="font-size: 22px; margin-bottom: 24px; text-align: center;">Twibbon TFS 2026</h2>
+
+          <!-- Caption Box -->
+          <div style="position: relative; background: rgba(0,0,0,0.45); border: 1px solid rgba(255,215,0,0.3); border-radius: 8px; padding: 28px 28px 20px; margin-bottom: 20px;">
+            <button onclick="copyTwibbonCaption()" id="copy-twibbon-btn" style="position: absolute; top: 14px; right: 14px; background: rgba(255,215,0,0.15); border: 1px solid var(--gold-warm); color: var(--gold-pure); padding: 6px 14px; font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.5px;">
+              📋 SALIN CAPTION
+            </button>
+            <pre id="twibbon-caption-text" style="white-space: pre-wrap; word-break: break-word; font-family: 'Rajdhani', sans-serif; font-size: 16px; color: rgba(255,255,255,0.92); line-height: 1.8; max-height: 380px; overflow-y: auto; padding-right: 6px;">𝙃𝙚𝙡𝙡𝙤 𝙄𝙣𝙣𝙤𝙫𝙖𝙩𝙤𝙧𝙨🚀✨
+Saya [Nama Kamu] dari [Nama Universitas/Instansi] siap berpartisipasi dalam Lomba Karya Tulis Ilmiah Nasional 𝙏𝙚𝙘𝙝𝙣𝙤 𝙁𝙖𝙞𝙧 𝙖𝙣𝙙 𝗦𝗲𝗺𝗶𝗻𝗮𝗿 𝟮𝟬𝟮𝟲 dengan semangat inovasi dan kreativitas untuk membangun kedaulatan digital Indonesia!!
+
+Tahun ini 𝘛𝘦𝘤𝘩𝘯𝘰 𝘍𝘢𝘪𝘳 𝘢𝘯𝘥  𝖲𝖾𝗺𝗂𝗇𝖺𝗋 2026 mengangkat tema besar "𝘌𝘮𝘱𝘰𝘸𝘦𝘳𝘪𝘯𝘨 𝘐𝘯𝘥𝘰𝘯𝘦𝘴𝘪𝘢'𝘴 𝘋𝘪𝘨𝘪𝘵𝘢𝘭 𝘚𝘰𝘷𝘦𝘳𝘦𝘪𝘨𝘯𝘵𝘺: 𝘈 𝘠𝘰𝘶𝘵𝘩-𝘓𝘦𝘥 𝘚𝘶𝘴𝘵𝘢𝘪𝘯𝘢𝘣𝘭𝘦 𝘐𝘯𝘯𝘰𝘷𝘢𝘵𝘪𝘰𝘯 𝘍𝘳𝘢𝘮𝘦𝘸𝘰𝘳𝘬 𝘵𝘰 𝘊𝘶𝘭𝘵𝘪𝘷𝘢𝘵𝘦 𝘏𝘪𝘨𝘩-𝘊𝘢𝘭𝘪𝘣𝘦𝘳 𝘋𝘪𝘨𝘪𝘵𝘢𝘭 𝘛𝘢𝘭𝘦𝘯𝘵𝘴 2045" sebagai wadah bagi generasi muda dalam menciptakan kerangka inovasi berkelanjutan guna mencetak talenta digital berkualitas tinggi demi mendukung Indonesia Emas 2045. 💻🚀
+
+Menarik banget kan!  Ayo ikut menjadi bagian dari solusi transformasi digital masa depan?!🤩
+
+𝙊𝙒𝙉 𝙏𝙃𝙀 𝙏𝙀𝘾𝙃, 𝙇𝙀𝘼𝘿 𝙏𝙃𝙀 𝙁𝙐𝙏𝙐𝙍𝙀 !!
+@[Tag Teman 1] @[Tag Teman 2] @[Tag Teman 3]
+
+For more Information: 👇📱 
+Instagram: @ukmpp_polinema @tfs_polinema   
+Twitter: @ukmpp_polinema   
+YouTube: UKM Pendidikan dan Penalaran Polinema
+Website:  www.ukmpp.or.id
+LinkedIn: UKM Pendidikan dan Penalaran Polinema
+
+
+🚀𝙋𝙧𝙤𝙪𝙙𝙡𝙮 𝙋𝙧𝙚𝙨𝙚𝙣𝙩𝙚𝙙 𝙗𝙮:
+UKM PENDIDIKAN DAN PENALARAN
+POLITEKNIK NEGERI MALANG
+#TFS2026 #UKMPPPolinema #PoliteknikNegeriMalang #WebinarNasional #LombaKaryaTulisIlmiah</pre>
+          </div>
+
+          <!-- Instruction & Button -->
+          <div style="text-align: center; margin-top: 10px;">
+            <p style="font-family: 'Rajdhani', sans-serif; font-size: 17px; font-weight: 600; color: var(--gold-warm); margin-bottom: 22px; letter-spacing: 0.5px;">
+              ✨ Gunakan caption ini untuk upload twibbon di sosial media kamu
+            </p>
+            <a href="https://twibify.com/s/twibbon-tfs2026-4" target="_blank" class="btn-primary" style="padding: 14px 32px; font-size: 9px; display: inline-block;">
+              <span>🖼️ BUAT TWIBBON</span>
+            </a>
+          </div>
         </div>
 
         <!-- Page 4: Berkas LKTI -->
@@ -1530,7 +1566,7 @@
             <span class="countdown-unit-label">Detik</span>
           </div>
         </div>
-          <div class="deadline-note">&#128197; Deadline: 8 Juli 2026, 23:59 WIB</div>
+          <div class="deadline-note">&#128197; Deadline: 4 Juli 2026, 23:59 WIB</div>
       </div>
 
       <div class="cp-section reveal reveal-delay-2">
@@ -1589,6 +1625,26 @@ function switchPage(pageId, btn) {
   document.querySelectorAll('.page-btn').forEach(el => el.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   btn.classList.add('active');
+}
+
+// Copy Twibbon Caption
+function copyTwibbonCaption() {
+  const text = document.getElementById('twibbon-caption-text').innerText;
+  const btn = document.getElementById('copy-twibbon-btn');
+  navigator.clipboard.writeText(text).then(function() {
+    btn.innerText = '✅ BERHASIL DISALIN!';
+    btn.style.background = 'rgba(76,175,80,0.3)';
+    btn.style.borderColor = '#4CAF50';
+    btn.style.color = '#4CAF50';
+    setTimeout(() => {
+      btn.innerHTML = '📋 SALIN CAPTION';
+      btn.style.background = 'rgba(255,215,0,0.15)';
+      btn.style.borderColor = 'var(--gold-warm)';
+      btn.style.color = 'var(--gold-pure)';
+    }, 3000);
+  }).catch(function() {
+    alert('Gagal menyalin teks. Silakan salin manual.');
+  });
 }
 
 
