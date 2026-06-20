@@ -2051,6 +2051,40 @@ POLITEKNIK NEGERI MALANG
                   <span>UNDUH</span>
                 </a>
               </div>
+
+              <!-- Card Pamflet LKTI -->
+              <div class="cp-card">
+                <div class="cp-avatar"
+                  style="background: rgba(255, 107, 0, 0.1); border-color: rgba(255, 107, 0, 0.4);">
+                  &#128247;
+                </div>
+                <div class="cp-info" style="flex: 1;">
+                  <div class="cp-role">PAMFLET</div>
+                  <div class="cp-name" style="font-size: 16px; white-space: normal; line-height: 1.4;">Pamflet LKTI TFS 2026</div>
+                </div>
+                <a href="https://drive.google.com/uc?export=download&amp;id=1Dko8hKTu1QIohCzJNLKg5GPPAolR8tDg"
+                  class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;"
+                  download onclick="autoDownloadPamflet(event, 'https://drive.google.com/uc?export=download&id=1Dko8hKTu1QIohCzJNLKg5GPPAolR8tDg')">
+                  <span>UNDUH</span>
+                </a>
+              </div>
+
+              <!-- Card Caption Pamflet -->
+              <div class="cp-card">
+                <div class="cp-avatar"
+                  style="background: rgba(0, 229, 255, 0.08); border-color: rgba(0, 229, 255, 0.3);">
+                  &#128221;
+                </div>
+                <div class="cp-info" style="flex: 1;">
+                  <div class="cp-role" style="color: var(--cyan-bright);">CAPTION</div>
+                  <div class="cp-name" style="font-size: 16px; white-space: normal; line-height: 1.4;">Caption Pamflet LKTI</div>
+                </div>
+                <a href="https://docs.google.com/document/d/1MosUtyEYIFoAlSDAzm6gv0RtyQjQmbFh/edit?usp=sharing&ouid=105883945666666282619&rtpof=true&sd=true"
+                  class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0; background: linear-gradient(135deg, rgba(0,80,120,0.8), rgba(0,150,200,0.8)); border-color: rgba(0,229,255,0.4); color: var(--cyan-bright);"
+                  target="_blank" rel="noopener noreferrer">
+                  <span>BUKA</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -2226,6 +2260,18 @@ POLITEKNIK NEGERI MALANG
     }
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // Auto-download Pamflet
+    function autoDownloadPamflet(event, url) {
+      event.preventDefault();
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', '');
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
   </script>
 </body>
