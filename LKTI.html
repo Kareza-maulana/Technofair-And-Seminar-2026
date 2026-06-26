@@ -1656,6 +1656,43 @@
     .page-content.active {
       display: block;
     }
+
+    /* ── BERKAS LKTI DOWNLOAD BUTTON - MOBILE ── */
+    .btn-icon {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .btn-text {
+        display: none;
+      }
+
+      .btn-icon {
+        display: inline;
+        font-size: 18px;
+        line-height: 1;
+      }
+
+      /* Tombol unduh jadi lebih kompak di mobile */
+      #page4 .cp-card .btn-primary {
+        padding: 10px 12px;
+        min-width: 44px;
+        width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* Juga kompakkan card agar tidak overflow */
+      #page4 .cp-card {
+        gap: 12px;
+      }
+
+      .page-content-wrapper {
+        padding: 24px 16px;
+      }
+    }
   </style>
 </head>
 
@@ -1911,7 +1948,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/14j_MB3YImhQUIshbyH4a5-TH-zfZQrFZ/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -1928,7 +1965,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/1Jqv_VNNCspCU6i5twhYXBvIzP4doLSe6/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -1945,7 +1982,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/1tSmt0L7Vyb8uIXhALTeViuCS1InmezNC/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -1962,7 +1999,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/1mh2BprktVeqAuVELMglMbDzwRYp_NMT8/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -1979,7 +2016,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/1UTGdX2ZAkHxZ8yKUToL5Iuz7_dXraUSv/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -1996,7 +2033,7 @@ POLITEKNIK NEGERI MALANG
                 </div>
                 <a href="https://docs.google.com/document/d/1W8SFHppEiWoi9Ra0Ho_LJnmWTHPPvc_A/export?format=docx"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -2013,7 +2050,7 @@ POLITEKNIK NEGERI MALANG
                 <a href="https://drive.google.com/uc?export=download&amp;id=1n4K2ZJW4aYImF8OELUfCkAYMWeSjn8fA"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" target="_blank"
                   rel="noopener noreferrer" download>
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -2030,7 +2067,7 @@ POLITEKNIK NEGERI MALANG
                 <a href="https://drive.google.com/uc?export=download&amp;id=1z_215rnU2vltEdY1BLA1xppNPz86-14K"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" target="_blank"
                   rel="noopener noreferrer">
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -2048,7 +2085,7 @@ POLITEKNIK NEGERI MALANG
                 <a href="https://drive.google.com/uc?export=download&amp;id=1egnQgD_FLIoGPvXJTdG6Gmt-Iu0hqOK6"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;" target="_blank"
                   rel="noopener noreferrer">
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -2065,7 +2102,7 @@ POLITEKNIK NEGERI MALANG
                 <a href="https://drive.google.com/uc?export=download&amp;id=1Dko8hKTu1QIohCzJNLKg5GPPAolR8tDg"
                   class="btn-primary" style="padding: 10px 15px; font-size: 9px; flex-shrink: 0;"
                   download onclick="autoDownloadPamflet(event, 'https://drive.google.com/uc?export=download&id=1Dko8hKTu1QIohCzJNLKg5GPPAolR8tDg')">
-                  <span>UNDUH</span>
+                  <span class="btn-text">UNDUH</span><span class="btn-icon">⬇</span>
                 </a>
               </div>
 
@@ -2242,9 +2279,9 @@ POLITEKNIK NEGERI MALANG
       if (!wasOpen) item.classList.add('open');
     }
 
-    // Countdown — deadline 8 July 2026 23:59:00 WIB (UTC+7)
+    // Countdown — deadline 4 July 2026 23:59:00 WIB (UTC+7)
     function updateCountdown() {
-      const deadline = new Date('2026-07-08T23:59:00+07:00').getTime();
+      const deadline = new Date('2026-07-04T23:59:00+07:00').getTime();
       const now = Date.now();
       let diff = deadline - now;
       if (diff < 0) diff = 0;
